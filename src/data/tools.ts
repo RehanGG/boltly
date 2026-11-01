@@ -141,6 +141,90 @@ export const tools: Tool[] = [
     related: ["emi-calculator", "mortgage-calculator", "compound-interest-calculator", "savings-goal-calculator"],
     icon: "Banknote",
   },
+  {
+    slug: "mortgage-calculator",
+    category: "finance",
+    name: "Mortgage Calculator",
+    shortDescription: "Estimate your monthly home payment with tax and insurance included.",
+    metaTitle: "Mortgage Calculator – Monthly Payment with Tax",
+    metaDescription:
+      "Free mortgage calculator. Enter home price, down payment, rate and term to see your monthly payment including property tax and insurance.",
+    keywords: ["mortgage", "home loan", "house", "down payment", "property tax"],
+    related: ["loan-calculator", "emi-calculator", "compound-interest-calculator", "savings-goal-calculator"],
+    icon: "House",
+  },
+  {
+    slug: "compound-interest-calculator",
+    category: "finance",
+    name: "Compound Interest Calculator",
+    shortDescription: "See how savings grow with compounding and monthly contributions.",
+    metaTitle: "Compound Interest Calculator – Grow Your Savings",
+    metaDescription:
+      "Free compound interest calculator. See your final balance, total contributions and interest earned, with a year-by-year growth table.",
+    keywords: ["compound interest", "investment", "savings growth", "interest", "apy"],
+    related: ["savings-goal-calculator", "loan-calculator", "emi-calculator", "percentage-calculator"],
+    icon: "TrendingUp",
+  },
+  {
+    slug: "savings-goal-calculator",
+    category: "finance",
+    name: "Savings Goal Calculator",
+    shortDescription: "Find the monthly amount you need to save to reach your goal.",
+    metaTitle: "Savings Goal Calculator – Monthly Amount to Save",
+    metaDescription:
+      "Free savings goal calculator. Enter your goal, current savings, interest rate and deadline to see how much to save each month.",
+    keywords: ["savings", "goal", "save", "monthly deposit", "target"],
+    related: ["compound-interest-calculator", "loan-calculator", "salary-hourly-converter", "percentage-calculator"],
+    icon: "PiggyBank",
+  },
+  {
+    slug: "sales-tax-vat-calculator",
+    category: "finance",
+    name: "Sales Tax / VAT Calculator",
+    shortDescription: "Add tax to a price or remove it to find the net and tax amounts.",
+    metaTitle: "Sales Tax / VAT Calculator – Add or Remove Tax",
+    metaDescription:
+      "Free sales tax and VAT calculator. Add tax to a price or take it out, and see the net, tax and gross amounts instantly.",
+    keywords: ["sales tax", "vat", "gst", "tax", "net", "gross"],
+    related: ["discount-calculator", "percentage-calculator", "profit-margin-calculator", "tip-calculator"],
+    icon: "Receipt",
+  },
+  {
+    slug: "tip-calculator",
+    category: "finance",
+    name: "Tip Calculator",
+    shortDescription: "Work out the tip, total bill and what each person pays.",
+    metaTitle: "Tip Calculator – Tip and Bill Split by Person",
+    metaDescription:
+      "Free tip calculator. Enter the bill, tip percentage and number of people to see the tip, the total and each person's share.",
+    keywords: ["tip", "gratuity", "split bill", "restaurant", "per person"],
+    related: ["discount-calculator", "sales-tax-vat-calculator", "percentage-calculator", "salary-hourly-converter"],
+    icon: "Coins",
+  },
+  {
+    slug: "profit-margin-calculator",
+    category: "finance",
+    name: "Profit Margin Calculator",
+    shortDescription: "Find profit, margin and markup from your cost and price.",
+    metaTitle: "Profit Margin Calculator – Margin and Markup",
+    metaDescription:
+      "Free profit margin calculator. Enter cost and revenue or markup to see profit, margin percentage and markup percentage.",
+    keywords: ["profit", "margin", "markup", "revenue", "cost", "pricing"],
+    related: ["discount-calculator", "sales-tax-vat-calculator", "percentage-calculator", "salary-hourly-converter"],
+    icon: "ChartPie",
+  },
+  {
+    slug: "salary-hourly-converter",
+    category: "finance",
+    name: "Salary / Hourly Converter",
+    shortDescription: "Convert pay between hourly, daily, weekly, monthly and yearly.",
+    metaTitle: "Salary to Hourly Converter – Hourly, Weekly, Yearly",
+    metaDescription:
+      "Free salary and hourly converter. Turn any pay amount into hourly, daily, weekly, monthly and yearly figures using your own hours.",
+    keywords: ["salary", "hourly", "wage", "pay", "annual", "income"],
+    related: ["savings-goal-calculator", "tip-calculator", "percentage-calculator", "profit-margin-calculator"],
+    icon: "Clock",
+  },
 ];
 
 export function getFeaturedTools(): Tool[] {

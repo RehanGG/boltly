@@ -204,18 +204,21 @@ export interface Tool {
 }
 ```
 
-A component map connects each registry entry to its tool component:
+A component map connects each registry entry to its tool component. It must live in a client component, because `next/dynamic` only splits code there; in a Server Component every tool would end up in one shared chunk that all tool pages download.
 
-```ts
-// src/tools/index.ts
+```tsx
+// src/tools/ToolLoader.tsx
+"use client";
 import dynamic from "next/dynamic";
 
-export const toolComponents: Record<string, React.ComponentType> = {
+const toolComponents = {
   "emi-calculator": dynamic(() => import("./finance/emi-calculator")),
   "word-counter": dynamic(() => import("./text/word-counter")),
   // ...one line per tool
 };
 ```
+
+`src/tools/index.ts` also lists the same slug in `BUILT_TOOL_SLUGS` (a Vitest test checks the two stay in step). Registry entries not in that list get no page and no sitemap entry.
 
 **Tool page template** (`src/app/[category]/[tool]/page.tsx`). Every tool page renders the same layout, in this order:
 

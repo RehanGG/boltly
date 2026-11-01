@@ -17,7 +17,8 @@ import {
   toolMetadata,
   webApplicationJsonLd,
 } from "@/lib/seo";
-import { getBuiltTools, toolComponents } from "@/tools";
+import { getBuiltTools } from "@/tools";
+import ToolLoader from "@/tools/ToolLoader";
 
 type Props = { params: Promise<{ category: string; tool: string }> };
 
@@ -38,8 +39,7 @@ export default async function ToolPage({ params }: Props) {
   const tool = getTool(categorySlug, slug);
   const category = getCategory(categorySlug);
   const content = toolContent[slug];
-  const ToolComponent = toolComponents[slug];
-  if (!tool || !category || !content || !ToolComponent) notFound();
+  if (!tool || !category || !content || !getBuiltTools().includes(tool)) notFound();
 
   const crumbs = [
     { name: "Home", path: "/" },
@@ -63,7 +63,7 @@ export default async function ToolPage({ params }: Props) {
 
       <div className="mt-6">
         <ToolShell localOnly={localOnly}>
-          <ToolComponent />
+          <ToolLoader slug={tool.slug} />
         </ToolShell>
       </div>
 

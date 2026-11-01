@@ -79,4 +79,39 @@ describe("tool registry", () => {
       "loan-calculator",
     ]);
   });
+
+  // Stage 3 finished the Finance copy. Other categories get this check in their stages.
+  describe("finance page content", () => {
+    const words = (text: string) => text.trim().split(/\s+/).filter(Boolean).length;
+    const financeSlugs = tools.filter((t) => t.category === "finance").map((t) => t.slug);
+
+    it("covers all 10 finance tools from the master list", () => {
+      expect(financeSlugs).toHaveLength(10);
+      for (const slug of financeSlugs) expect(toolContent[slug], slug).toBeDefined();
+    });
+
+    it("has a 100 to 200 word method and 300+ words of text per page", () => {
+      for (const slug of financeSlugs) {
+        const c = toolContent[slug];
+        const method = words(c.method.join(" "));
+        expect(method, `${slug} method`).toBeGreaterThanOrEqual(100);
+        expect(method, `${slug} method`).toBeLessThanOrEqual(200);
+        const total = words(
+          [c.intro, ...c.steps, ...c.method, ...c.faqs.flatMap((f) => [f.question, f.answer])].join(" "),
+        );
+        expect(total, `${slug} total`).toBeGreaterThanOrEqual(300);
+      }
+    });
+
+    it("does not repeat text between tools", () => {
+      const seen = new Map<string, string>();
+      for (const slug of financeSlugs) {
+        const c = toolContent[slug];
+        for (const text of [c.intro, ...c.method, ...c.faqs.map((f) => f.answer)]) {
+          expect(seen.get(text), `${slug} repeats ${seen.get(text)}`).toBeUndefined();
+          seen.set(text, slug);
+        }
+      }
+    });
+  });
 });
