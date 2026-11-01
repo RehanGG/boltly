@@ -1,26 +1,106 @@
 @import "tailwindcss";
 
+/* Design tokens from BRIEF.md section 11. Light is the default. */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #ffffff;
+  --surface: #f8fafc;
+  --border: #e2e8f0;
+  --text: #0f172a;
+  --muted: #64748b;
+  --primary: #1d4ed8;
+  --accent: #f59e0b;
+  --success: #16a34a;
+  --danger: #dc2626;
+  --on-primary: #ffffff;
+  color-scheme: light;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
+/* Dark follows the system unless the visitor picked a theme. */
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  :root:not([data-theme="light"]) {
+    --bg: #0b1220;
+    --surface: #111a2e;
+    --border: #1f2a44;
+    --text: #e5e7eb;
+    --muted: #94a3b8;
+    --primary: #3b82f6;
+    --accent: #fbbf24;
+    --success: #22c55e;
+    --danger: #f87171;
+    color-scheme: dark;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+:root[data-theme="dark"] {
+  --bg: #0b1220;
+  --surface: #111a2e;
+  --border: #1f2a44;
+  --text: #e5e7eb;
+  --muted: #94a3b8;
+  --primary: #3b82f6;
+  --accent: #fbbf24;
+  --success: #22c55e;
+  --danger: #f87171;
+  color-scheme: dark;
+}
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+@theme {
+  --color-*: initial;
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-border: var(--border);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-primary: var(--primary);
+  --color-accent: var(--accent);
+  --color-success: var(--success);
+  --color-danger: var(--danger);
+  --color-on-primary: var(--on-primary);
+  --color-transparent: transparent;
+  --color-current: currentColor;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  --text-h1: 1.875rem; /* 30px */
+  --text-h1-lg: 2.25rem; /* 36px */
+  --text-h2: 1.375rem; /* 22px */
+  --text-base: 1rem;
+  --text-sm: 0.875rem;
+
+  --container-page: 1100px;
+  --container-tool: 760px;
+
+  --radius-card: 12px;
+  --radius-btn: 10px;
+  --shadow-card: 0 1px 2px rgb(15 23 42 / 0.05);
+}
+
+@layer base {
+  html {
+    background: var(--bg);
+  }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  :focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
