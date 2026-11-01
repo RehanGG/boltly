@@ -225,6 +225,102 @@ export const tools: Tool[] = [
     related: ["savings-goal-calculator", "tip-calculator", "percentage-calculator", "profit-margin-calculator"],
     icon: "Clock",
   },
+  {
+    slug: "date-difference-calculator",
+    category: "calculators",
+    name: "Date Difference Calculator",
+    shortDescription: "Count the days, weeks, months and years between two dates.",
+    metaTitle: "Date Difference Calculator – Days Between Two Dates",
+    metaDescription:
+      "Free date difference calculator. Find the number of days, weeks, months and years between two dates, with an option to include the end date.",
+    keywords: ["date", "days between", "difference", "duration", "weeks", "countdown"],
+    related: ["age-calculator", "time-zone-converter", "percentage-calculator"],
+    icon: "CalendarRange",
+  },
+  {
+    slug: "bmi-calculator",
+    category: "calculators",
+    name: "BMI Calculator",
+    shortDescription: "Check your body mass index and healthy weight range.",
+    metaTitle: "BMI Calculator – Body Mass Index in Metric or Imperial",
+    metaDescription:
+      "Free BMI calculator. Enter your height and weight in metric or imperial units to see your BMI, category and healthy weight range.",
+    keywords: ["bmi", "body mass index", "weight", "height", "healthy weight"],
+    related: ["unit-converter", "percentage-calculator", "age-calculator"],
+    icon: "HeartPulse",
+  },
+  {
+    slug: "time-zone-converter",
+    category: "calculators",
+    name: "Time Zone Converter",
+    shortDescription: "Convert a date and time between cities and time zones.",
+    metaTitle: "Time Zone Converter – Compare Times Between Cities",
+    metaDescription:
+      "Free time zone converter. Pick a date, time and city to see the local time in other cities, with daylight saving handled automatically.",
+    keywords: ["time zone", "timezone", "world clock", "convert time", "utc", "gmt", "est"],
+    related: ["date-difference-calculator", "age-calculator", "unit-converter"],
+    icon: "Globe",
+  },
+  {
+    slug: "character-counter",
+    category: "text",
+    name: "Character Counter",
+    shortDescription: "Count characters with and without spaces and check post limits.",
+    metaTitle: "Character Counter – Count Characters and Limits",
+    metaDescription:
+      "Free character counter. Count characters with and without spaces and check limits for X, Instagram, SMS, SEO titles and meta descriptions.",
+    keywords: ["characters", "letters", "limit", "twitter", "instagram", "sms", "meta description"],
+    related: ["word-counter", "case-converter", "lorem-ipsum-generator"],
+    icon: "Hash",
+  },
+  {
+    slug: "case-converter",
+    category: "text",
+    name: "Case Converter",
+    shortDescription: "Change text to upper, lower, title, sentence, camel, snake or kebab case.",
+    metaTitle: "Case Converter – UPPER, lower, Title, camelCase and More",
+    metaDescription:
+      "Free case converter. Change text to uppercase, lowercase, title case, sentence case, camelCase, snake_case or kebab-case in one click.",
+    keywords: ["uppercase", "lowercase", "title case", "sentence case", "camelcase", "snake case", "kebab case"],
+    related: ["word-counter", "character-counter", "remove-duplicate-lines"],
+    icon: "CaseSensitive",
+  },
+  {
+    slug: "remove-duplicate-lines",
+    category: "text",
+    name: "Remove Duplicate Lines",
+    shortDescription: "Delete repeated lines from a list and keep only the unique ones.",
+    metaTitle: "Remove Duplicate Lines – Delete Repeated Lines Online",
+    metaDescription:
+      "Free tool to remove duplicate lines from a list. Ignore case, trim spaces, remove empty lines and sort the unique lines. Runs in your browser.",
+    keywords: ["duplicate", "unique", "lines", "dedupe", "list", "sort"],
+    related: ["word-counter", "text-diff-checker", "case-converter"],
+    icon: "ListX",
+  },
+  {
+    slug: "text-diff-checker",
+    category: "text",
+    name: "Text Diff Checker",
+    shortDescription: "Compare two texts and see what was added or removed.",
+    metaTitle: "Text Diff Checker – Compare Two Texts Online",
+    metaDescription:
+      "Free text diff checker. Paste two versions of a text to see the added and removed words or lines highlighted. Runs in your browser.",
+    keywords: ["diff", "compare", "difference", "changes", "text compare"],
+    related: ["remove-duplicate-lines", "word-counter", "case-converter"],
+    icon: "GitCompare",
+  },
+  {
+    slug: "lorem-ipsum-generator",
+    category: "text",
+    name: "Lorem Ipsum Generator",
+    shortDescription: "Make placeholder text by paragraph, sentence or word.",
+    metaTitle: "Lorem Ipsum Generator – Placeholder Text",
+    metaDescription:
+      "Free lorem ipsum generator. Create placeholder text in paragraphs, sentences or words, start with the classic opening and copy it in one click.",
+    keywords: ["lorem ipsum", "placeholder", "dummy text", "filler", "paragraphs"],
+    related: ["word-counter", "character-counter", "case-converter"],
+    icon: "Pilcrow",
+  },
 ];
 
 export function getFeaturedTools(): Tool[] {

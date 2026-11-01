@@ -80,13 +80,16 @@ describe("tool registry", () => {
     ]);
   });
 
-  // Stage 3 finished the Finance copy. Other categories get this check in their stages.
-  describe("finance page content", () => {
+  // Finance, Calculators and Text have their final copy. Image and Generators get
+  // this check in Stage 5.
+  describe("page content", () => {
     const words = (text: string) => text.trim().split(/\s+/).filter(Boolean).length;
-    const financeSlugs = tools.filter((t) => t.category === "finance").map((t) => t.slug);
+    const financeSlugs = tools
+      .filter((t) => ["finance", "calculators", "text"].includes(t.category))
+      .map((t) => t.slug);
 
-    it("covers all 10 finance tools from the master list", () => {
-      expect(financeSlugs).toHaveLength(10);
+    it("covers all 10 finance, 6 calculator and 6 text tools from the master list", () => {
+      expect(financeSlugs).toHaveLength(22);
       for (const slug of financeSlugs) expect(toolContent[slug], slug).toBeDefined();
     });
 
