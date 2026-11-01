@@ -300,7 +300,10 @@ Organic search is the main traffic source, so every tool page must be indexable 
 
 **Performance budget**
 
-- Each tool page under 150 KB of JavaScript on first load. Load heavy libraries (QR, image compression) only on the tool that needs them, using dynamic imports.
+- The framework (Next.js and React) costs about 175 KB gzipped of JavaScript on every page, including the 404 page, and we cannot change that. It is not counted against the budget.
+- Budget for the code we add on top of the framework, gzipped: **50 KB per tool page** and **60 KB for the homepage**. Measure it with `npm run build` followed by `npm run check:size`, which subtracts the JavaScript the 404 page already loads from each page's JavaScript.
+- Load heavy libraries only on the tool that needs them, using dynamic imports: `qrcode` (QR Code Generator), `browser-image-compression` (Image Compressor), `pdf-lib` (Image to PDF) and `jsbarcode` (Barcode Generator). No other page may include them.
+- Load search (Fuse.js) only when the visitor clicks or focuses the search bar, not on page load.
 - Largest Contentful Paint under 2.5 s on a mid-range phone; cumulative layout shift under 0.1.
 - Images in WebP or SVG; icons as inline SVG.
 

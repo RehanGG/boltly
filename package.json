@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "vitest run"
+    "test": "vitest run",
+    "check:size": "node scripts/check-size.mjs"
   },
   "dependencies": {
     "browser-image-compression": "^2.0.2",

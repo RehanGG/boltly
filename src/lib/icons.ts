@@ -1,9 +1,16 @@
 import {
+  ArrowLeftRight,
+  Banknote,
+  CalendarDays,
   Calculator,
   Image,
+  ImageDown,
   KeyRound,
   Landmark,
+  Percent,
+  QrCode,
   Sparkles,
+  Tag,
   Type,
   Wrench,
   type LucideIcon,
@@ -12,11 +19,18 @@ import {
 // Only the icons the registry uses, so lucide's full set is never bundled.
 // Add an entry here when a tool or category uses a new icon name.
 const icons: Record<string, LucideIcon> = {
+  ArrowLeftRight,
+  Banknote,
+  CalendarDays,
   Calculator,
   Image,
+  ImageDown,
   KeyRound,
   Landmark,
+  Percent,
+  QrCode,
   Sparkles,
+  Tag,
   Type,
 };
 

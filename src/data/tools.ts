@@ -1,7 +1,11 @@
+import { toolPath } from "@/lib/paths";
 import type { Tool } from "@/types";
 
+export { toolPath };
+
 // The single source of truth for search, category pages, related tools,
-// the sitemap and SEO metadata. Stage 1 holds 3 sample tools from the master list.
+// the sitemap and SEO metadata. Until the tools are built this holds placeholder
+// entries for the 10 featured tools of the master list; the rest are added per stage.
 export const tools: Tool[] = [
   {
     slug: "emi-calculator",
@@ -21,6 +25,32 @@ export const tools: Tool[] = [
     icon: "Landmark",
   },
   {
+    slug: "percentage-calculator",
+    category: "calculators",
+    name: "Percentage Calculator",
+    shortDescription: "Find a percentage of a number, or the change between two values.",
+    metaTitle: "Percentage Calculator – Percent of a Number & Change",
+    metaDescription:
+      "Free percentage calculator. Work out X% of Y, what percent one number is of another, and percentage increase or decrease.",
+    keywords: ["percent", "percentage", "increase", "decrease", "change"],
+    featured: true,
+    related: ["discount-calculator", "sales-tax-vat-calculator", "profit-margin-calculator", "unit-converter"],
+    icon: "Percent",
+  },
+  {
+    slug: "age-calculator",
+    category: "calculators",
+    name: "Age Calculator",
+    shortDescription: "Find your exact age in years, months and days.",
+    metaTitle: "Age Calculator – Exact Age in Years, Months and Days",
+    metaDescription:
+      "Free age calculator. Enter a date of birth to see your exact age in years, months and days and the days until your next birthday.",
+    keywords: ["age", "birthday", "date of birth", "years"],
+    featured: true,
+    related: ["date-difference-calculator", "bmi-calculator", "time-zone-converter"],
+    icon: "CalendarDays",
+  },
+  {
     slug: "word-counter",
     category: "text",
     name: "Word Counter",
@@ -32,6 +62,32 @@ export const tools: Tool[] = [
     featured: true,
     related: ["character-counter", "case-converter", "remove-duplicate-lines"],
     icon: "Type",
+  },
+  {
+    slug: "image-compressor",
+    category: "image",
+    name: "Image Compressor",
+    shortDescription: "Shrink JPG, PNG and WebP files in your browser without uploading.",
+    metaTitle: "Image Compressor – Compress JPG, PNG and WebP Online",
+    metaDescription:
+      "Free image compressor. Reduce JPG, PNG and WebP file sizes right in your browser. Files never leave your device.",
+    keywords: ["compress", "image", "jpg", "png", "webp", "reduce size"],
+    featured: true,
+    related: ["image-resizer", "image-converter", "image-to-pdf"],
+    icon: "ImageDown",
+  },
+  {
+    slug: "qr-code-generator",
+    category: "generators",
+    name: "QR Code Generator",
+    shortDescription: "Make QR codes for links, text and Wi-Fi, then download as PNG or SVG.",
+    metaTitle: "QR Code Generator – Free QR Codes for URLs and Wi-Fi",
+    metaDescription:
+      "Free QR code generator. Create QR codes for links, text or Wi-Fi, choose size and colors, and download as PNG or SVG.",
+    keywords: ["qr", "qr code", "wifi", "url", "barcode"],
+    featured: true,
+    related: ["barcode-generator", "password-generator", "random-number-generator"],
+    icon: "QrCode",
   },
   {
     slug: "password-generator",
@@ -46,14 +102,53 @@ export const tools: Tool[] = [
     related: ["random-number-generator", "qr-code-generator"],
     icon: "KeyRound",
   },
+  {
+    slug: "unit-converter",
+    category: "calculators",
+    name: "Unit Converter",
+    shortDescription: "Convert length, weight, temperature, volume, speed and area.",
+    metaTitle: "Unit Converter – Length, Weight, Temperature and More",
+    metaDescription:
+      "Free unit converter. Convert length, weight, temperature, volume, speed and area instantly in either direction.",
+    keywords: ["convert", "units", "length", "weight", "temperature", "metric", "imperial"],
+    featured: true,
+    related: ["percentage-calculator", "bmi-calculator", "time-zone-converter"],
+    icon: "ArrowLeftRight",
+  },
+  {
+    slug: "discount-calculator",
+    category: "finance",
+    name: "Discount Calculator",
+    shortDescription: "Find the sale price and how much you save after one or two discounts.",
+    metaTitle: "Discount Calculator – Sale Price and Amount Saved",
+    metaDescription:
+      "Free discount calculator. Enter the original price and discount percent to see the final price and how much you save.",
+    keywords: ["discount", "sale", "price", "percent off", "savings"],
+    featured: true,
+    related: ["percentage-calculator", "sales-tax-vat-calculator", "profit-margin-calculator", "tip-calculator"],
+    icon: "Tag",
+  },
+  {
+    slug: "loan-calculator",
+    category: "finance",
+    name: "Loan Calculator",
+    shortDescription: "Get your monthly payment and a full repayment schedule.",
+    metaTitle: "Loan Calculator – Monthly Payment and Amortization",
+    metaDescription:
+      "Free loan calculator. Enter amount, rate and term to see your monthly payment and a full amortization schedule you can download.",
+    keywords: ["loan", "payment", "amortization", "schedule", "interest"],
+    featured: true,
+    related: ["emi-calculator", "mortgage-calculator", "compound-interest-calculator", "savings-goal-calculator"],
+    icon: "Banknote",
+  },
 ];
+
+export function getFeaturedTools(): Tool[] {
+  return tools.filter((t) => t.featured);
+}
 
 export function getTool(category: string, slug: string): Tool | undefined {
   return tools.find((t) => t.category === category && t.slug === slug);
-}
-
-export function toolPath(tool: Pick<Tool, "category" | "slug">): string {
-  return `/${tool.category}/${tool.slug}/`;
 }
 
 // Featured first, then alphabetical.

@@ -5,10 +5,11 @@ import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import FAQ from "@/components/tool/FAQ";
 import RelatedTools from "@/components/tool/RelatedTools";
 import ToolShell from "@/components/tool/ToolShell";
+import RecordVisit from "@/components/tool/RecordVisit";
 import JsonLd from "@/components/ui/JsonLd";
 import { getCategory } from "@/data/categories";
 import { toolContent } from "@/data/tool-content";
-import { getRelatedTools, getTool, toolPath, tools } from "@/data/tools";
+import { getRelatedTools, getTool, toolPath } from "@/data/tools";
 import {
   breadcrumbJsonLd,
   categoryPath,
@@ -16,14 +17,14 @@ import {
   toolMetadata,
   webApplicationJsonLd,
 } from "@/lib/seo";
-import { toolComponents } from "@/tools";
+import { getBuiltTools, toolComponents } from "@/tools";
 
 type Props = { params: Promise<{ category: string; tool: string }> };
 
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return tools.map((t) => ({ category: t.category, tool: t.slug }));
+  return getBuiltTools().map((t) => ({ category: t.category, tool: t.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -49,6 +50,7 @@ export default async function ToolPage({ params }: Props) {
 
   return (
     <article className="mx-auto max-w-page px-4 py-6">
+      <RecordVisit slug={tool.slug} />
       <JsonLd data={breadcrumbJsonLd(crumbs)} />
       <JsonLd data={webApplicationJsonLd(tool)} />
       <JsonLd data={faqJsonLd(content.faqs)} />

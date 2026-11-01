@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Search } from "lucide-react";
 import { categories } from "@/data/categories";
 import Logo from "./Logo";
 import ThemeToggle from "./ThemeToggle";
@@ -22,7 +23,16 @@ export default function Header() {
             ))}
           </ul>
         </nav>
-        <ThemeToggle />
+        <div className="flex items-center">
+          <Link
+            href="/#search"
+            aria-label="Search tools"
+            className="flex h-11 w-11 items-center justify-center rounded-btn text-muted transition-colors duration-150 hover:bg-surface hover:text-text md:hidden"
+          >
+            <Search className="h-5 w-5" aria-hidden="true" />
+          </Link>
+          <ThemeToggle />
+        </div>
       </div>
       <nav
         aria-label="Categories"
