@@ -46,7 +46,11 @@ export default async function ToolPage({ params }: Props) {
     { name: category.name, path: categoryPath(category) },
     { name: tool.name, path: toolPath(tool) },
   ];
-  const localOnly = tool.category === "image" || tool.category === "text";
+  const localOnly = ["image", "text", "generators"].includes(tool.category);
+  const localNote =
+    tool.category === "image"
+      ? "Your files are processed in your browser and never leave your device."
+      : undefined;
 
   return (
     <article className="mx-auto max-w-page px-4 py-6">
@@ -62,7 +66,7 @@ export default async function ToolPage({ params }: Props) {
       <p className="mt-2 text-muted">{tool.shortDescription}</p>
 
       <div className="mt-6">
-        <ToolShell localOnly={localOnly}>
+        <ToolShell localOnly={localOnly} localNote={localNote}>
           <ToolLoader slug={tool.slug} />
         </ToolShell>
       </div>

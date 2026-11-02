@@ -29,6 +29,13 @@ const toolComponents: Record<string, ComponentType> = {
   "text-diff-checker": dynamic(() => import("./text/text-diff-checker")),
   "lorem-ipsum-generator": dynamic(() => import("./text/lorem-ipsum-generator")),
   "word-counter": dynamic(() => import("./text/word-counter")),
+  "image-compressor": dynamic(() => import("./image/image-compressor")),
+  "image-resizer": dynamic(() => import("./image/image-resizer")),
+  "image-converter": dynamic(() => import("./image/image-converter")),
+  "image-to-pdf": dynamic(() => import("./image/image-to-pdf")),
+  "qr-code-generator": dynamic(() => import("./generators/qr-code-generator")),
+  "random-number-generator": dynamic(() => import("./generators/random-number-generator")),
+  "barcode-generator": dynamic(() => import("./generators/barcode-generator")),
   "password-generator": dynamic(() => import("./generators/password-generator")),
 };
 

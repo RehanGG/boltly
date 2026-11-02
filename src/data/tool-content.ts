@@ -1,8 +1,7 @@
 import type { ToolContent } from "@/types";
 
 // Intro, steps, method and FAQs per tool, keyed by slug.
-// Finance, Everyday Calculator and Text tools have their full copy. The
-// password-generator entry is a short draft until Stage 5.
+// Page copy for all 30 Phase 1 tools, keyed by slug.
 export const toolContent: Record<string, ToolContent> = {
   "emi-calculator": {
     intro:
@@ -906,36 +905,331 @@ export const toolContent: Record<string, ToolContent> = {
       },
     ],
   },
-  "password-generator": {
+  "image-compressor": {
     intro:
-      "Generate a strong, random password with the length and character types you choose. It is created in your browser and never leaves your device.",
+      "Large photos slow down websites, fill up inboxes and use up storage. This image compressor shrinks JPG, PNG and WebP files right in your browser, so your pictures are never uploaded to a server. Add one image or twenty, choose a quality level, and compare the size before and after for every file.",
     steps: [
-      "Choose the password length.",
-      "Select the character types to include.",
-      "Copy the generated password.",
+      "Choose your images or drop them onto the box.",
+      "Set the quality, and optionally a maximum width or height.",
+      "Press Compress and wait while each image is processed.",
+      "Check the before and after sizes, then download each compressed image.",
     ],
     method: [
-      "Each character is picked using the browser's secure random number generator (crypto.getRandomValues), which is suitable for security use, unlike Math.random.",
-      "Strength depends on length and the size of the character set: every extra character multiplies the number of possible passwords.",
+      "Each image is decoded by your browser, drawn onto a canvas and saved again as a JPG or WebP file at the quality you choose. Lower quality discards fine detail that the eye barely notices, which can cut a photo to a fraction of its size. Setting a maximum width or height reduces the number of pixels, which saves even more.",
+      "PNG is a lossless format, so its quality setting has little effect and the savings are smaller. For big savings on PNG images, choose WebP as the output format. If the new file would not be smaller, the tool keeps your original and says so. Processing runs on your device one file at a time, and no web worker or outside server is involved, so nothing is sent over the internet. Very large photos can take a few seconds, and the page stays responsive meanwhile.",
     ],
     faqs: [
       {
-        question: "Is this password generator secure?",
+        question: "Are my images uploaded anywhere?",
         answer:
-          "Yes. It uses the secure random generator built into your browser.",
+          "No. Compression happens inside your browser, and your files never leave your device. You can even use the tool offline once the page has loaded.",
       },
       {
-        question: "How long should my password be?",
-        answer: "Use at least 12 characters, and 16 or more for important accounts.",
-      },
-      {
-        question: "Are passwords saved?",
-        answer: "No. Passwords are never stored or sent anywhere.",
-      },
-      {
-        question: "Should I reuse passwords?",
+        question: "What quality setting should I use?",
         answer:
-          "No. Use a different password for each account, ideally with a password manager.",
+          "For photos, 70 to 80 percent usually looks the same as the original while being much smaller. Go lower for thumbnails, and higher if you plan to edit the picture again.",
+      },
+      {
+        question: "Why did my PNG barely get smaller?",
+        answer:
+          "PNG keeps every pixel exactly, so there is less to remove. Try the WebP output format, or reduce the maximum width or height.",
+      },
+      {
+        question: "Is there a file size limit?",
+        answer:
+          "Each image can be up to 50 MB, and you can add 20 at a time. Larger files take longer and need more memory on your device.",
+      },
+      {
+        question: "Will compression change the image size in pixels?",
+        answer:
+          "Only if you pick a maximum width or height. Otherwise the pixel dimensions stay the same.",
+      },
+    ],
+  },
+  "image-resizer": {
+    intro:
+      "Need a photo at an exact size for a form, a profile picture, an email or a website? This image resizer changes the width and height of a JPG, PNG or WebP image, or scales it by a percentage. It runs entirely in your browser, so the picture stays private, and it shows the new size before you download.",
+    steps: [
+      "Choose an image or drop it onto the box.",
+      "Pick whether to resize by pixels or by percent, and enter the new size.",
+      "Choose the file format and quality for the result.",
+      "Press Resize image, check the new size and download the file.",
+    ],
+    method: [
+      "When you lock the aspect ratio, changing the width updates the height so the picture keeps its proportions: new height = new width × original height ÷ original width. Percent mode multiplies both sides by the same factor. Sizes are rounded to whole pixels, and a side can be up to 16,384 pixels long.",
+      "To save memory on large photos, the browser scales the image while decoding it and then draws it onto a canvas of the exact target size, using high-quality smoothing. The canvas is saved as JPG, PNG or WebP. JPG and WebP use the quality slider, while PNG is lossless. Photo rotation stored by your camera is applied automatically. Making an image much larger than the original cannot add detail, so enlarged pictures can look soft.",
+    ],
+    faqs: [
+      {
+        question: "How do I keep the picture from looking stretched?",
+        answer:
+          "Leave 'Lock aspect ratio' ticked. When you change one side, the other updates automatically to keep the proportions.",
+      },
+      {
+        question: "Does resizing reduce the file size?",
+        answer:
+          "Usually, yes. Fewer pixels mean a smaller file. For the smallest result, also use a lower quality or the WebP format.",
+      },
+      {
+        question: "Can I make an image bigger?",
+        answer:
+          "Yes, but it will not gain detail, so it may look blurry. It is best to start from the largest original you have.",
+      },
+      {
+        question: "Which formats are supported?",
+        answer:
+          "You can open JPG, PNG, WebP, GIF and BMP files. The result can be saved as JPG, PNG or WebP.",
+      },
+      {
+        question: "Is my image sent to a server?",
+        answer:
+          "No. Resizing happens on your device and nothing is uploaded.",
+      },
+    ],
+  },
+  "image-converter": {
+    intro:
+      "Websites and apps do not always accept the image format you have. This image converter changes pictures between JPG, PNG and WebP, and can also open GIF and BMP files. Everything happens in your browser, so you can convert private photos and screenshots without uploading them anywhere.",
+    steps: [
+      "Choose your images or drop them onto the box.",
+      "Pick the format to convert to: JPG, PNG or WebP.",
+      "For JPG and WebP, set the quality.",
+      "Press Convert and download each converted file.",
+    ],
+    method: [
+      "Each image is decoded by your browser and drawn onto a canvas at its full pixel size. The canvas is then saved in the format you chose. JPG and WebP are lossy formats that use the quality slider to trade file size against detail. PNG is lossless and keeps every pixel, which makes the file larger but sharp.",
+      "JPG cannot store transparency, so transparent areas are filled with white before saving. PNG and WebP keep transparency. Converting an image that was already compressed does not restore lost detail, so convert from the original when you can. If your browser cannot create a format, for example WebP in some older Safari versions, the tool tells you instead of silently giving you a different file. File names keep the original name with the new extension.",
+    ],
+    faqs: [
+      {
+        question: "Which format should I choose?",
+        answer:
+          "Use JPG for photos, PNG for screenshots, logos and anything that needs transparency, and WebP when you want small files for a website.",
+      },
+      {
+        question: "Why does my transparent PNG have a white background as JPG?",
+        answer:
+          "JPG has no transparency. The tool fills transparent areas with white. Use PNG or WebP if you need to keep transparency.",
+      },
+      {
+        question: "Will converting reduce image quality?",
+        answer:
+          "Converting to JPG or WebP can lose a little detail, depending on the quality slider. PNG keeps everything but makes larger files.",
+      },
+      {
+        question: "Can I convert many images at once?",
+        answer:
+          "Yes. Add up to 20 images, convert them together and download each result.",
+      },
+      {
+        question: "Are my files uploaded?",
+        answer:
+          "No. The conversion runs in your browser and your files stay on your device.",
+      },
+    ],
+  },
+  "image-to-pdf": {
+    intro:
+      "Turn photos, scans and screenshots into a single PDF you can email, print or upload. Add your images, put them in the order you want, choose the page size and orientation, and download one PDF with each image on its own page. The PDF is built in your browser, so private documents never leave your device.",
+    steps: [
+      "Add your images, then use the arrows to put them in order.",
+      "Choose a page size, orientation and margin.",
+      "Choose smaller file size or the original image size.",
+      "Press Create PDF and download the result.",
+    ],
+    method: [
+      "Every image becomes one page. Your browser first decodes each picture, which also applies the rotation stored by phone cameras, and then saves it as a JPG, or as a PNG if the source was a PNG. In the smaller-file option, the longest side is limited to 2,000 pixels, which is plenty for printing on A4 or Letter paper.",
+      "The images are placed on the pages using the pdf-lib library, which is only downloaded when you press Create PDF. For fixed page sizes such as A4 or US Letter, each image is scaled to fit inside the margins without stretching and is centred. The automatic orientation turns the page sideways for wide pictures. With 'Same size as the image', each page matches its picture. Pages are measured in points, where 72 points make one inch.",
+    ],
+    faqs: [
+      {
+        question: "Can I combine photos from my phone?",
+        answer:
+          "Yes. Choose them from your photo library. Their rotation is corrected automatically so they appear the right way up.",
+      },
+      {
+        question: "How do I change the order of the pages?",
+        answer:
+          "Use the up and down arrow buttons beside each image in the list before you create the PDF.",
+      },
+      {
+        question: "Why is my PDF so large?",
+        answer:
+          "Big photos make big PDFs. Choose 'Smaller file' to limit the image size, or compress the images first with the Image Compressor.",
+      },
+      {
+        question: "Can I mix JPG, PNG and WebP images?",
+        answer:
+          "Yes. You can mix formats freely, and GIF and BMP files also work.",
+      },
+      {
+        question: "Is my document uploaded?",
+        answer:
+          "No. The PDF is created on your device and your images are never sent to a server.",
+      },
+    ],
+  },
+  "qr-code-generator": {
+    intro:
+      "Create a QR code for a web address, a message or your Wi-Fi network in a few seconds. Type your link or text, choose a size and colours, and download the code as a PNG for screens and print, or as an SVG that stays sharp at any size. The code is generated in your browser, so your links and passwords stay private.",
+    steps: [
+      "Choose Link or text, or Wi-Fi network.",
+      "Enter the link, text or network details.",
+      "Adjust the size, colours and error correction if you like.",
+      "Check the preview, then download the PNG or SVG.",
+    ],
+    method: [
+      "A QR code stores your text as a grid of dark and light squares called modules. The qrcode library picks the smallest grid that fits your data and adds error correction, which lets the code still scan if part of it is dirty or covered. Higher levels, from Low (7 percent) to High (30 percent), recover more damage but make the code denser.",
+      "In Wi-Fi mode, the details are turned into the standard text WIFI:T:WPA;S:name;P:password;; that phones recognise and use to join the network. Characters such as semicolons and colons are escaped with a backslash. For reliable scanning, use a dark code on a light background, keep the quiet margin around the code, and print it at least 2 cm wide. The tool warns you when your colours have too little contrast.",
+    ],
+    faqs: [
+      {
+        question: "Do QR codes expire?",
+        answer:
+          "No. A code made here simply contains your text, so it works as long as the link or information it points to still exists.",
+      },
+      {
+        question: "How do I make a Wi-Fi QR code?",
+        answer:
+          "Choose Wi-Fi network, enter the network name and password, and pick the security type. Phones can scan the code to join without typing the password.",
+      },
+      {
+        question: "Which error correction level should I pick?",
+        answer:
+          "Medium suits most uses. Choose High if the code will be printed on something that can get scratched, or if you add a logo over it.",
+      },
+      {
+        question: "Why will my code not scan?",
+        answer:
+          "Common causes are low contrast, a light code on a dark background, too small a print size, or no margin around the code.",
+      },
+      {
+        question: "Is my information stored or sent anywhere?",
+        answer:
+          "No. The code is created in your browser and what you type is never uploaded.",
+      },
+    ],
+  },
+  "password-generator": {
+    intro:
+      "Strong, unique passwords are the best protection for your accounts, but they are hard to invent yourself. This password generator creates random passwords of the length and character types you choose. It uses your browser's secure random number generator, runs on your device, and never sends or stores what it makes.",
+    steps: [
+      "Set the length with the slider. Sixteen characters or more is a good choice.",
+      "Choose which types of characters to include.",
+      "Press Generate new if you want a different password.",
+      "Copy the password straight into your password manager or account form.",
+    ],
+    method: [
+      "Every character is chosen with crypto.getRandomValues, the browser's cryptographically secure source of randomness, not the Math.random function that is unsuitable for security. When a number is needed from a smaller range, values that would make some characters slightly more likely are discarded and redrawn, so each character has exactly the same chance.",
+      "The generator picks one character from each type you selected, fills the rest from all types together, and then shuffles the result with a secure shuffle, so the password always contains every type but in an unpredictable position. The strength meter estimates entropy as length × log2(size of the character pool). Under 40 bits is weak, 60 bits is fair, 80 bits is strong and above that is very strong. Avoiding look-alike characters removes I, l, 1, O, 0 and o.",
+    ],
+    faqs: [
+      {
+        question: "Is it safe to generate passwords in a browser?",
+        answer:
+          "Yes, when the code runs on your device and uses a secure random source, as this tool does. Nothing is sent to a server or saved.",
+      },
+      {
+        question: "How long should a password be?",
+        answer:
+          "Use at least 12 characters, and 16 or more for important accounts such as email and banking.",
+      },
+      {
+        question: "Should I include symbols?",
+        answer:
+          "Symbols make a password harder to guess, but length matters more. Some sites do not accept every symbol, so untick the option if a site rejects it.",
+      },
+      {
+        question: "Can I reuse a generated password?",
+        answer:
+          "No. Use a different password for each account and keep them in a password manager so you do not need to remember them.",
+      },
+      {
+        question: "What does the strength meter show?",
+        answer:
+          "It estimates how many guesses an attacker would need, based on the length and the number of possible characters. It cannot know whether a site stores your password safely.",
+      },
+    ],
+  },
+  "random-number-generator": {
+    intro:
+      "Need a fair way to pick a number? Use this random number generator for raffles, games, classroom draws, testing and decisions. Set the lowest and highest number, choose how many you want, and decide whether numbers can repeat. The numbers come from your browser's secure random generator, so every value in the range is equally likely.",
+    steps: [
+      "Enter the minimum and maximum numbers. Both are included.",
+      "Enter how many numbers you want.",
+      "Tick 'No repeated numbers' if each value may appear only once.",
+      "Press Generate numbers, then copy the list.",
+    ],
+    method: [
+      "Each number is a whole number between your minimum and maximum, inclusive. The tool asks crypto.getRandomValues for random bits and converts them to a position in the range. To keep every value equally likely, any random value that would favour the lower numbers, an effect called modulo bias, is thrown away and drawn again. Math.random is never used.",
+      "With 'No repeated numbers', the tool uses a partial Fisher-Yates shuffle. It picks each number from those not yet chosen and remembers only the swaps it makes, so it works even for huge ranges without building a giant list. If you ask for more different numbers than the range holds, you get a clear message. The range can span up to 2^53 values, you can request up to 10,000 numbers, and sorting the list is optional.",
+    ],
+    faqs: [
+      {
+        question: "Are the numbers truly random?",
+        answer:
+          "They come from the secure generator built into your browser, which is designed for cryptography. That is far better than the basic random function many websites use.",
+      },
+      {
+        question: "Are the minimum and maximum included?",
+        answer:
+          "Yes. A range of 1 to 6 can produce any of 1, 2, 3, 4, 5 or 6, just like a die.",
+      },
+      {
+        question: "How do I draw lottery-style numbers?",
+        answer:
+          "Set the range, for example 1 to 49, enter how many to draw, tick 'No repeated numbers' and press Generate.",
+      },
+      {
+        question: "Can I use negative numbers?",
+        answer:
+          "Yes. The minimum can be negative, for example -50 to 50.",
+      },
+      {
+        question: "Why did I get an error about different numbers?",
+        answer:
+          "You asked for more unique numbers than exist in the range. Widen the range or ask for fewer numbers.",
+      },
+    ],
+  },
+  "barcode-generator": {
+    intro:
+      "Make a barcode for a product label, an inventory shelf, a ticket or a school project. This barcode generator creates Code 128 barcodes for letters, numbers and symbols, and EAN-13 barcodes like those on shop products. Download the result as a PNG or a sharp SVG. Everything runs in your browser.",
+    steps: [
+      "Choose Code 128 or EAN-13.",
+      "Type the text or digits you want to encode.",
+      "Adjust the bar width and height, and choose whether to show the number.",
+      "Check the preview and download the PNG or SVG.",
+    ],
+    method: [
+      "Code 128 is a flexible format that can encode any printable English character. It switches between internal character sets automatically to keep the barcode short. EAN-13 encodes exactly 13 digits, the last of which is a check digit that lets scanners spot misreads.",
+      "The check digit is worked out from the first 12 digits. Digits in odd positions are multiplied by 1 and digits in even positions by 3, and the check digit is the amount needed to bring the total up to the next multiple of 10. If you enter 12 digits, the tool adds the check digit for you. If you enter 13, it checks that the last digit is correct. The barcode is drawn with the jsbarcode library, which is only loaded on this page. Real retail EAN codes are issued by GS1, so use a code you own before selling a product.",
+    ],
+    faqs: [
+      {
+        question: "What is the difference between Code 128 and EAN-13?",
+        answer:
+          "Code 128 holds text of varying length and is used for shipping and inventory. EAN-13 holds 13 digits and is the standard for products sold in shops.",
+      },
+      {
+        question: "What is a check digit?",
+        answer:
+          "It is a final digit calculated from the others so that scanners can detect mistakes. This tool calculates it for you.",
+      },
+      {
+        question: "Can I use these barcodes in a shop?",
+        answer:
+          "Retail EAN numbers are allocated by GS1 and linked to your company. You can make the picture here, but you need a properly assigned number to sell through retailers.",
+      },
+      {
+        question: "Why will my barcode not scan?",
+        answer:
+          "Try thicker bars, more height and a clear white margin around the code, and print it at a good quality. Avoid curved or shiny surfaces.",
+      },
+      {
+        question: "Is my data uploaded?",
+        answer:
+          "No. The barcode is drawn in your browser and what you type is never sent anywhere.",
       },
     ],
   },

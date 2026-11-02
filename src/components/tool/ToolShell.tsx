@@ -6,9 +6,11 @@ import { ShieldCheck } from "lucide-react";
 export default function ToolShell({
   children,
   localOnly = false,
+  localNote = "Runs in your browser. Nothing you enter is uploaded.",
 }: {
   children: ReactNode;
   localOnly?: boolean;
+  localNote?: string;
 }) {
   return (
     <section
@@ -19,7 +21,7 @@ export default function ToolShell({
       {localOnly && (
         <p className="mt-4 flex items-center gap-2 text-sm text-muted">
           <ShieldCheck className="h-4 w-4 shrink-0 text-success" aria-hidden="true" />
-          Runs in your browser. Nothing you enter is uploaded.
+          {localNote}
         </p>
       )}
     </section>

@@ -321,6 +321,66 @@ export const tools: Tool[] = [
     related: ["word-counter", "character-counter", "case-converter"],
     icon: "Pilcrow",
   },
+  {
+    slug: "image-resizer",
+    category: "image",
+    name: "Image Resizer",
+    shortDescription: "Change an image's width and height, or scale it by percent.",
+    metaTitle: "Image Resizer – Resize Images Online in Your Browser",
+    metaDescription:
+      "Free image resizer. Set a new width and height or a percentage, keep the aspect ratio and download the result. Your files never leave your device.",
+    keywords: ["resize", "image size", "scale", "dimensions", "pixels", "width", "height"],
+    related: ["image-compressor", "image-converter", "image-to-pdf"],
+    icon: "ImageUpscale",
+  },
+  {
+    slug: "image-converter",
+    category: "image",
+    name: "Image Converter",
+    shortDescription: "Convert images between JPG, PNG and WebP in your browser.",
+    metaTitle: "Image Converter – JPG, PNG and WebP Converter",
+    metaDescription:
+      "Free image converter. Change images to JPG, PNG or WebP in your browser with a quality setting. Your files never leave your device.",
+    keywords: ["convert", "jpg", "png", "webp", "jpeg", "format", "gif", "bmp"],
+    related: ["image-compressor", "image-resizer", "image-to-pdf"],
+    icon: "FileImage",
+  },
+  {
+    slug: "image-to-pdf",
+    category: "image",
+    name: "Image to PDF",
+    shortDescription: "Combine one or more images into a single PDF file.",
+    metaTitle: "Image to PDF – Combine Images into One PDF",
+    metaDescription:
+      "Free image to PDF converter. Add JPG, PNG or WebP images, choose page size and orientation and download one PDF. Files stay on your device.",
+    keywords: ["pdf", "images to pdf", "jpg to pdf", "png to pdf", "combine", "photos"],
+    related: ["image-compressor", "image-resizer", "image-converter"],
+    icon: "FileText",
+  },
+  {
+    slug: "random-number-generator",
+    category: "generators",
+    name: "Random Number Generator",
+    shortDescription: "Pick random numbers in a range, with or without repeats.",
+    metaTitle: "Random Number Generator – Secure Random Numbers",
+    metaDescription:
+      "Free random number generator. Choose a range and how many numbers you need, with no repeats if you like, using your browser's secure generator.",
+    keywords: ["random", "number", "dice", "lottery", "draw", "unique", "picker"],
+    related: ["password-generator", "qr-code-generator", "barcode-generator"],
+    icon: "Dices",
+  },
+  {
+    slug: "barcode-generator",
+    category: "generators",
+    name: "Barcode Generator",
+    shortDescription: "Make Code 128 and EAN-13 barcodes and download them as PNG or SVG.",
+    metaTitle: "Barcode Generator – Code 128 and EAN-13 Barcodes",
+    metaDescription:
+      "Free barcode generator. Create Code 128 or EAN-13 barcodes with an automatic check digit and download them as PNG or SVG.",
+    keywords: ["barcode", "code 128", "ean-13", "ean13", "upc", "check digit", "label"],
+    related: ["qr-code-generator", "random-number-generator", "password-generator"],
+    icon: "Barcode",
+  },
 ];
 
 export function getFeaturedTools(): Tool[] {

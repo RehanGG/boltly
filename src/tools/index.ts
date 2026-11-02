@@ -27,6 +27,13 @@ export const BUILT_TOOL_SLUGS: string[] = [
   "text-diff-checker",
   "lorem-ipsum-generator",
   "word-counter",
+  "image-compressor",
+  "image-resizer",
+  "image-converter",
+  "image-to-pdf",
+  "qr-code-generator",
+  "random-number-generator",
+  "barcode-generator",
   "password-generator",
 ];
 

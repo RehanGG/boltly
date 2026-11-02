@@ -80,21 +80,17 @@ describe("tool registry", () => {
     ]);
   });
 
-  // Finance, Calculators and Text have their final copy. Image and Generators get
-  // this check in Stage 5.
   describe("page content", () => {
     const words = (text: string) => text.trim().split(/\s+/).filter(Boolean).length;
-    const financeSlugs = tools
-      .filter((t) => ["finance", "calculators", "text"].includes(t.category))
-      .map((t) => t.slug);
+    const allSlugs = tools.map((t) => t.slug);
 
-    it("covers all 10 finance, 6 calculator and 6 text tools from the master list", () => {
-      expect(financeSlugs).toHaveLength(22);
-      for (const slug of financeSlugs) expect(toolContent[slug], slug).toBeDefined();
+    it("covers all 30 tools from the master list", () => {
+      expect(allSlugs).toHaveLength(30);
+      for (const slug of allSlugs) expect(toolContent[slug], slug).toBeDefined();
     });
 
     it("has a 100 to 200 word method and 300+ words of text per page", () => {
-      for (const slug of financeSlugs) {
+      for (const slug of allSlugs) {
         const c = toolContent[slug];
         const method = words(c.method.join(" "));
         expect(method, `${slug} method`).toBeGreaterThanOrEqual(100);
@@ -108,7 +104,7 @@ describe("tool registry", () => {
 
     it("does not repeat text between tools", () => {
       const seen = new Map<string, string>();
-      for (const slug of financeSlugs) {
+      for (const slug of allSlugs) {
         const c = toolContent[slug];
         for (const text of [c.intro, ...c.method, ...c.faqs.map((f) => f.answer)]) {
           expect(seen.get(text), `${slug} repeats ${seen.get(text)}`).toBeUndefined();

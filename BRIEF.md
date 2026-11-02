@@ -307,6 +307,7 @@ Organic search is the main traffic source, so every tool page must be indexable 
 - Budget for the code we add on top of the framework, gzipped: **50 KB per tool page** and **60 KB for the homepage**. Measure it with `npm run build` followed by `npm run check:size`, which subtracts the JavaScript the 404 page already loads from each page's JavaScript.
 - Load heavy libraries only on the tool that needs them, using dynamic imports: `qrcode` (QR Code Generator), `browser-image-compression` (Image Compressor), `pdf-lib` (Image to PDF) and `jsbarcode` (Barcode Generator). No other page may include them.
 - Load search (Fuse.js) only when the visitor clicks or focuses the search bar, not on page load.
+- These on-demand downloads are not counted in the per-page budget, because they only start after a click or when a tool draws its result. `npm run check:size` lists them and fails if any page loads one up front. `pdf-lib` is the largest, at about 173 KB gzipped, and is only fetched when someone presses Create PDF. A Vitest test also fails if any file imports these libraries statically.
 - Largest Contentful Paint under 2.5 s on a mid-range phone; cumulative layout shift under 0.1.
 - Images in WebP or SVG; icons as inline SVG.
 
