@@ -21,7 +21,7 @@ export default function Footer() {
           </p>
         </div>
         <nav aria-label="Tool categories">
-          <h2 className="text-sm font-semibold text-text">Categories</h2>
+          <p className="text-sm font-semibold text-text">Categories</p>
           <ul>
             {categories.map((c) => (
               <li key={c.slug}>
@@ -33,7 +33,7 @@ export default function Footer() {
           </ul>
         </nav>
         <nav aria-label="Company and legal">
-          <h2 className="text-sm font-semibold text-text">{SITE_NAME}</h2>
+          <p className="text-sm font-semibold text-text">{SITE_NAME}</p>
           <ul>
             {LEGAL_PAGES.map((page) => (
               <li key={page.path}>

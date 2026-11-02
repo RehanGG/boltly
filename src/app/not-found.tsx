@@ -18,7 +18,7 @@ export default function NotFound() {
       </p>
       <Link
         href="/"
-        className="mt-6 inline-flex min-h-11 items-center rounded-btn bg-primary px-5 font-medium text-on-primary"
+        className="mt-6 inline-flex min-h-11 items-center rounded-btn bg-primary-solid px-5 font-medium text-on-primary"
       >
         Go to the home page
       </Link>

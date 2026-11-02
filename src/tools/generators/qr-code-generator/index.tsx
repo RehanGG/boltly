@@ -17,6 +17,7 @@ import {
   scanWarning,
   type ErrorLevel,
   type QrMode,
+  type QrStyle,
   type WifiSecurity,
 } from "./calc";
 
@@ -62,19 +63,25 @@ export default function QrCodeGenerator() {
   const style = checkStyle({ size: parseNumber(size), margin: parseNumber(margin), dark, light, errorLevel });
   const warning = scanWarning(dark, light);
 
-  // Everything that changes the picture. The qrcode library is downloaded the first
-  // time this runs, so other pages never load it.
-  const text2 = content.ok ? content.value : null;
-  const key = style.ok && text2 !== null ? JSON.stringify([text2, style.value]) : null;
+  // Everything that changes the picture, as one string. The effect below depends on this
+  // string only: objects made during render are new every time and would restart it
+  // endlessly. The qrcode library is downloaded the first time this runs, so other pages
+  // never load it.
+  const key = style.ok && content.ok ? JSON.stringify([content.value, style.value]) : null;
 
   useEffect(() => {
-    if (key === null || !style.ok || text2 === null) return;
+    if (key === null) return;
     let cancelled = false;
-    const { size: width, margin: quiet, dark: darkColor, light: lightColor, errorLevel: level } = style.value;
+    const [text2, picture] = JSON.parse(key) as [string, QrStyle];
     (async () => {
       try {
         const QRCode = (await import("qrcode")).default;
-        const options = { errorCorrectionLevel: level, margin: quiet, width, color: { dark: darkColor, light: lightColor } };
+        const options = {
+          errorCorrectionLevel: picture.errorLevel,
+          margin: picture.margin,
+          width: picture.size,
+          color: { dark: picture.dark, light: picture.light },
+        };
         const [png, svg] = await Promise.all([
           QRCode.toDataURL(text2, options),
           QRCode.toString(text2, { ...options, type: "svg" }),
@@ -92,7 +99,7 @@ export default function QrCodeGenerator() {
     return () => {
       cancelled = true;
     };
-  }, [key, text2, style]);
+  }, [key]);
 
   const ready = rendered !== null && rendered.key === key;
   const baseName = mode === "wifi" ? "wifi-qr-code" : "qr-code";

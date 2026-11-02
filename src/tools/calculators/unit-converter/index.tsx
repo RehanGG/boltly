@@ -73,6 +73,7 @@ export default function UnitConverter() {
           <NumberField
             id="from-value"
             label="From"
+            allowNegative
             value={fromText}
             onChange={(v) => {
               setText(v);
@@ -101,6 +102,7 @@ export default function UnitConverter() {
           <NumberField
             id="to-value"
             label="To"
+            allowNegative
             value={toText}
             onChange={(v) => {
               setText(v);

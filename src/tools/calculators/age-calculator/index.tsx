@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { PartyPopper } from "lucide-react";
 import CopyButton from "@/components/ui/CopyButton";
 import DateField from "@/components/ui/DateField";
 import { MainResult, ResultBox, ResultError, ResultRow } from "@/components/ui/ResultBox";
@@ -56,7 +57,10 @@ export default function AgeCalculator() {
               {plural(result.value.months, "month")}, {plural(result.value.days, "day")}
             </p>
             {result.value.isBirthdayToday && (
-              <p className="mt-2 font-medium text-success">Happy birthday!</p>
+              <p className="mt-2 flex items-center gap-2 font-medium text-text">
+                <PartyPopper className="h-5 w-5 text-accent" aria-hidden="true" />
+                Happy birthday!
+              </p>
             )}
             <dl className="mt-3">
               <ResultRow label="Total days" value={formatNumber(result.value.totalDays, 0)} />

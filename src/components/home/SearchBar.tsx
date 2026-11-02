@@ -121,87 +121,89 @@ export default function SearchBar({
         if (!e.currentTarget.contains(e.relatedTarget)) setOpen(false);
       }}
     >
-      <label htmlFor="search" className="sr-only">
+      <label htmlFor="search" className="mb-2 block text-left text-sm font-medium text-text">
         Search tools
       </label>
-      <Search
-        className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted"
-        aria-hidden="true"
-      />
-      <input
-        ref={inputRef}
-        id="search"
-        type="search"
-        role="combobox"
-        autoComplete="off"
-        spellCheck={false}
-        placeholder="Search tools, e.g. EMI, word counter, QR code"
-        value={query}
-        onChange={(e) => {
-          setQuery(e.target.value);
-          setOpen(true);
-          setActive(-1);
-        }}
-        onFocus={() => {
-          setOpen(true);
-          loadSearch();
-        }}
-        onKeyDown={onKeyDown}
-        aria-expanded={showList && results.length > 0}
-        aria-controls={listId}
-        aria-autocomplete="list"
-        aria-activedescendant={active >= 0 ? `${listId}-${active}` : undefined}
-        className="h-14 w-full rounded-card border border-border bg-bg pl-12 pr-12 text-base text-text shadow-card placeholder:text-muted focus:border-primary"
-      />
-      <kbd
-        aria-hidden="true"
-        className="pointer-events-none absolute right-4 top-1/2 hidden h-6 -translate-y-1/2 items-center rounded border border-border px-2 text-sm text-muted md:flex"
-      >
-        /
-      </kbd>
+      <div className="relative">
+        <Search
+          className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted"
+          aria-hidden="true"
+        />
+        <input
+          ref={inputRef}
+          id="search"
+          type="search"
+          role="combobox"
+          autoComplete="off"
+          spellCheck={false}
+          placeholder="Search tools, e.g. EMI, word counter, QR code"
+          value={query}
+          onChange={(e) => {
+            setQuery(e.target.value);
+            setOpen(true);
+            setActive(-1);
+          }}
+          onFocus={() => {
+            setOpen(true);
+            loadSearch();
+          }}
+          onKeyDown={onKeyDown}
+          aria-expanded={showList && results.length > 0}
+          aria-controls={listId}
+          aria-autocomplete="list"
+          aria-activedescendant={active >= 0 ? `${listId}-${active}` : undefined}
+          className="h-14 w-full rounded-card border border-border bg-bg pl-12 pr-12 text-base text-text shadow-card placeholder:text-muted focus:border-primary"
+        />
+        <kbd
+          aria-hidden="true"
+          className="pointer-events-none absolute right-4 top-1/2 hidden h-6 -translate-y-1/2 items-center rounded border border-border px-2 text-sm text-muted md:flex"
+        >
+          /
+        </kbd>
 
-      <p role="status" aria-live="polite" className="sr-only">
-        {status}
-      </p>
+        <p role="status" aria-live="polite" className="sr-only">
+          {status}
+        </p>
 
-      {showList && (
-        <div className="absolute left-0 right-0 top-full z-20 mt-2 overflow-hidden rounded-card border border-border bg-bg text-left shadow-lg">
-          {!ready ? (
-            <p className="px-4 py-3 text-muted">Loading…</p>
-          ) : results.length === 0 ? (
-            <p className="px-4 py-3 text-muted">
-              No tools found. Try a different word.
-            </p>
-          ) : null}
-          <ul id={listId} role="listbox" aria-label="Search results">
-            {results.map((doc, i) => {
-              const category = categories.find((c) => c.slug === doc.category);
-              return (
-                <li
-                  key={doc.slug}
-                  id={`${listId}-${i}`}
-                  role="option"
-                  aria-selected={i === active}
-                  onMouseEnter={() => setActive(i)}
-                  className={i === active ? "bg-surface" : undefined}
-                >
-                  <Link
-                    href={toolPath(doc)}
-                    tabIndex={-1}
-                    onClick={() => setOpen(false)}
-                    className="flex min-h-11 items-center justify-between gap-4 px-4 py-2"
+        {showList && (
+          <div className="absolute left-0 right-0 top-full z-20 mt-2 overflow-hidden rounded-card border border-border bg-bg text-left shadow-lg">
+            {!ready ? (
+              <p className="px-4 py-3 text-muted">Loading…</p>
+            ) : results.length === 0 ? (
+              <p className="px-4 py-3 text-muted">
+                No tools found. Try a different word.
+              </p>
+            ) : null}
+            <ul id={listId} role="listbox" aria-label="Search results">
+              {results.map((doc, i) => {
+                const category = categories.find((c) => c.slug === doc.category);
+                return (
+                  <li
+                    key={doc.slug}
+                    id={`${listId}-${i}`}
+                    role="option"
+                    aria-selected={i === active}
+                    onMouseEnter={() => setActive(i)}
+                    className={i === active ? "bg-surface" : undefined}
                   >
-                    <span className="font-medium text-text">{doc.name}</span>
-                    <span className="shrink-0 text-sm text-muted">
-                      {category?.shortName}
-                    </span>
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      )}
+                    <Link
+                      href={toolPath(doc)}
+                      tabIndex={-1}
+                      onClick={() => setOpen(false)}
+                      className="flex min-h-11 items-center justify-between gap-4 px-4 py-2"
+                    >
+                      <span className="font-medium text-text">{doc.name}</span>
+                      <span className="shrink-0 text-sm text-muted">
+                        {category?.shortName}
+                      </span>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

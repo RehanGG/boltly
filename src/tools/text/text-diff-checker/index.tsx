@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { Check } from "lucide-react";
 import SelectField from "@/components/ui/SelectField";
 import TextArea from "@/components/ui/TextArea";
 import { fieldError } from "@/lib/validate";
@@ -39,16 +40,19 @@ export default function TextDiffChecker() {
       <div aria-live="polite" className="rounded-card border border-border bg-bg p-4">
         {result.ok ? (
           result.value.identical ? (
-            <p className="font-medium text-success">The two texts are identical.</p>
+            <p className="flex items-center gap-2 font-medium text-text">
+              <Check className="h-5 w-5 text-success" aria-hidden="true" />
+              The two texts are identical.
+            </p>
           ) : (
             <>
               <p className="text-text">
-                <strong className="text-success">{result.value.added}</strong> {unit}
+                <strong>{result.value.added}</strong> {unit}
                 {result.value.added === 1 ? "" : "s"} added,{" "}
-                <strong className="text-danger">{result.value.removed}</strong> {unit}
+                <strong>{result.value.removed}</strong> {unit}
                 {result.value.removed === 1 ? "" : "s"} removed.
               </p>
-              <p className="mt-1 text-sm text-muted">
+              <p className="mt-1 text-sm text-text">
                 <ins className="bg-success/20 px-1 no-underline [text-decoration:underline]">Added</ins>{" "}
                 <del className="bg-danger/20 px-1">Removed</del>
               </p>

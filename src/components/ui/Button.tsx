@@ -14,7 +14,7 @@ export default function Button({
       className={clsx(
         "inline-flex min-h-11 items-center justify-center gap-2 rounded-btn px-4 text-base font-medium transition-colors duration-150",
         variant === "primary"
-          ? "bg-primary text-on-primary hover:opacity-90"
+          ? "bg-primary-solid text-on-primary hover:opacity-90"
           : "border border-border bg-bg text-text hover:bg-surface",
         className,
       )}

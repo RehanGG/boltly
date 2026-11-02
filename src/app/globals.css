@@ -8,6 +8,7 @@
   --text: #0f172a;
   --muted: #64748b;
   --primary: #1d4ed8;
+  --primary-solid: #1d4ed8; /* background of filled buttons: white text on it meets WCAG AA */
   --accent: #f59e0b;
   --success: #16a34a;
   --danger: #dc2626;
@@ -24,6 +25,7 @@
     --text: #e5e7eb;
     --muted: #94a3b8;
     --primary: #3b82f6;
+    --primary-solid: #2563eb;
     --accent: #fbbf24;
     --success: #22c55e;
     --danger: #f87171;
@@ -38,6 +40,7 @@
   --text: #e5e7eb;
   --muted: #94a3b8;
   --primary: #3b82f6;
+  --primary-solid: #2563eb;
   --accent: #fbbf24;
   --success: #22c55e;
   --danger: #f87171;
@@ -54,6 +57,7 @@
   --color-text: var(--text);
   --color-muted: var(--muted);
   --color-primary: var(--primary);
+  --color-primary-solid: var(--primary-solid);
   --color-accent: var(--accent);
   --color-success: var(--success);
   --color-danger: var(--danger);

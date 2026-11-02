@@ -45,8 +45,8 @@ export default function RandomNumberGenerator() {
       inputs={
         <>
           <div className="grid grid-cols-2 gap-3">
-            <NumberField id="min" label="Minimum" value={min} onChange={setMin} error={fieldError(current, "min")} />
-            <NumberField id="max" label="Maximum" value={max} onChange={setMax} error={fieldError(current, "max")} />
+            <NumberField id="min" label="Minimum" allowNegative value={min} onChange={setMin} error={fieldError(current, "min")} />
+            <NumberField id="max" label="Maximum" allowNegative value={max} onChange={setMax} error={fieldError(current, "max")} />
           </div>
           <NumberField
             id="count"

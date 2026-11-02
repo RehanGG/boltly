@@ -60,8 +60,8 @@ export default function PercentageCalculator() {
       inputs={
         <>
           <SelectField id="mode" label="What do you want to find?" value={mode} onChange={(v) => changeMode(v as PercentMode)} options={MODES} />
-          <NumberField id="a" label={f.a} suffix={f.aSuffix} value={a} onChange={setA} error={fieldError(result, "a")} />
-          <NumberField id="b" label={f.b} value={b} onChange={setB} error={fieldError(result, "b")} />
+          <NumberField id="a" label={f.a} suffix={f.aSuffix} allowNegative value={a} onChange={setA} error={fieldError(result, "a")} />
+          <NumberField id="b" label={f.b} allowNegative value={b} onChange={setB} error={fieldError(result, "b")} />
         </>
       }
       result={
@@ -69,7 +69,7 @@ export default function PercentageCalculator() {
           <ResultBox>
             <MainResult
               label={mode === "of" ? "Result" : mode === "whatPercent" ? "Percentage" : result.value.direction === "decrease" ? "Percentage decrease" : "Percentage increase"}
-              value={mode === "of" ? formatNumber(result.value.value, 6) : formatPercent(result.value.value, 6)}
+              value={mode === "of" ? formatNumber(result.value.value, 6) : formatPercent(mode === "change" ? Math.abs(result.value.value) : result.value.value, 6)}
             />
             {mode === "of" && (
               <dl className="mt-3">

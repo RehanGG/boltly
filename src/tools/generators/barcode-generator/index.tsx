@@ -10,7 +10,7 @@ import ToolLayout from "@/components/ui/ToolLayout";
 import { parseNumber } from "@/lib/format";
 import { canvasToBlob, downloadBlob } from "@/lib/image";
 import { fieldError } from "@/lib/validate";
-import { checkBarcodeStyle, FORMATS, normalizeBarcode, type BarcodeFormat } from "./calc";
+import { checkBarcodeStyle, FORMATS, normalizeBarcode, type BarcodeFormat, type BarcodeStyle } from "./calc";
 
 export default function BarcodeGenerator() {
   const [format, setFormat] = useState<BarcodeFormat>("CODE128");
@@ -26,27 +26,31 @@ export default function BarcodeGenerator() {
   const text = code.ok ? code.value.value : null;
   const ready = text !== null && style.ok;
 
+  // One string for everything that changes the picture, so the effect only runs when
+  // something really changed (objects made during render are new on every render).
+  const key = text !== null && style.ok ? JSON.stringify([text, style.value, format, showText]) : null;
+
   // jsbarcode is downloaded the first time a barcode is drawn.
   useEffect(() => {
     const svg = svgRef.current;
     if (!svg) return;
-    if (text === null || !style.ok) {
+    if (key === null) {
       svg.replaceChildren();
       return;
     }
     let cancelled = false;
-    const { barWidth: width, height: barHeight } = style.value;
+    const [value, picture, kind, showNumber] = JSON.parse(key) as [string, BarcodeStyle, BarcodeFormat, boolean];
     (async () => {
       try {
         const JsBarcode = (await import("jsbarcode")).default;
         if (cancelled) return;
         let valid = true;
         svg.replaceChildren();
-        JsBarcode(svg, text, {
-          format,
-          width,
-          height: barHeight,
-          displayValue: showText,
+        JsBarcode(svg, value, {
+          format: kind,
+          width: picture.barWidth,
+          height: picture.height,
+          displayValue: showNumber,
           margin: 12,
           background: "#ffffff",
           lineColor: "#000000",
@@ -66,7 +70,7 @@ export default function BarcodeGenerator() {
     return () => {
       cancelled = true;
     };
-  }, [text, style, format, showText]);
+  }, [key]);
 
   function downloadSvg() {
     const svg = svgRef.current;

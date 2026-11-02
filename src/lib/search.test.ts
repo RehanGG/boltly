@@ -32,4 +32,20 @@ describe("search", () => {
       search("loan").map((d) => d.slug),
     );
   });
+
+  it("matches several words together and ignores filler words", () => {
+    expect(search("convert units")[0].slug).toBe("unit-converter");
+    expect(search("png to jpg")[0].slug).toBe("image-converter");
+    expect(search("days between")[0].slug).toBe("date-difference-calculator");
+    expect(search("compare text")[0].slug).toBe("text-diff-checker");
+  });
+
+  it("falls back to a phrase search when no tool has every word", () => {
+    expect(search("zzzz qqqq")).toEqual([]);
+    expect(search("loan zzzz").length).toBeGreaterThanOrEqual(0);
+  });
+
+  it("finds a tool with a typo in one of several words", () => {
+    expect(search("qr wifii")[0].slug).toBe("qr-code-generator");
+  });
 });

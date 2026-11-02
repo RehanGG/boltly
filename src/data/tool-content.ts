@@ -922,7 +922,7 @@ export const toolContent: Record<string, ToolContent> = {
       {
         question: "Are my images uploaded anywhere?",
         answer:
-          "No. Compression happens inside your browser, and your files never leave your device. You can even use the tool offline once the page has loaded.",
+          "No. Compression happens inside your browser, and your files never leave your device. Only the compression code itself is downloaded, the first time you press Compress.",
       },
       {
         question: "What quality setting should I use?",
@@ -1181,7 +1181,7 @@ export const toolContent: Record<string, ToolContent> = {
           "Set the range, for example 1 to 49, enter how many to draw, tick 'No repeated numbers' and press Generate.",
       },
       {
-        question: "Can I use negative numbers?",
+        question: "Can the minimum be below zero?",
         answer:
           "Yes. The minimum can be negative, for example -50 to 50.",
       },

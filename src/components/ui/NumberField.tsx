@@ -21,6 +21,7 @@ interface NumberFieldProps {
   prefix?: string;
   suffix?: string;
   hint?: string;
+  allowNegative?: boolean; // phone number pads have no minus key, so use a full keyboard
 }
 
 // Text input with a visible label. Uses inputMode instead of type="number"
@@ -34,6 +35,7 @@ export default function NumberField({
   prefix,
   suffix,
   hint,
+  allowNegative = false,
 }: NumberFieldProps) {
   const errorId = `${id}-error`;
   return (
@@ -50,7 +52,7 @@ export default function NumberField({
         <input
           id={id}
           type="text"
-          inputMode="decimal"
+          inputMode={allowNegative ? "text" : "decimal"}
           autoComplete="off"
           value={value}
           onChange={(e) => onChange(e.target.value)}

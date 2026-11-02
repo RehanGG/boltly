@@ -47,7 +47,7 @@ export default function SavingsGoalCalculator() {
           <ResultBox>
             <MainResult label="Save each month" value={formatMoney(result.value.monthlyDeposit, currency)} />
             {result.value.alreadyOnTrack && (
-              <p className="mt-2 text-sm text-success">
+              <p className="mt-2 text-sm text-text">
                 Your current savings will reach this goal on their own with interest.
               </p>
             )}
