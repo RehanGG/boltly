@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { Inter } from "next/font/google";
+import ThirdParties from "@/components/consent/ThirdParties";
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
-import { SITE_NAME, SITE_URL } from "@/lib/seo";
+import { DEFAULT_DESCRIPTION, DEFAULT_OG_IMAGE, DEFAULT_TITLE, SITE_NAME, SITE_URL } from "@/lib/seo";
 import "./globals.css";
 
 const inter = Inter({
@@ -15,11 +16,13 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME} – Free Online Tools and Calculators`,
+    default: DEFAULT_TITLE,
     template: `%s | ${SITE_NAME}`,
   },
-  description:
-    "Free, fast online tools and calculators. No sign-up, and your data stays in your browser.",
+  description: DEFAULT_DESCRIPTION,
+  // Fallback for any page that sets no metadata of its own.
+  openGraph: { type: "website", siteName: SITE_NAME, title: DEFAULT_TITLE, description: DEFAULT_DESCRIPTION, images: [DEFAULT_OG_IMAGE] },
+  twitter: { card: "summary_large_image", title: DEFAULT_TITLE, description: DEFAULT_DESCRIPTION, images: [DEFAULT_OG_IMAGE.url] },
 };
 
 // Runs before first paint: apply the saved theme, else the system theme.
@@ -43,6 +46,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           {children}
         </main>
         <Footer />
+        <ThirdParties />
       </body>
     </html>
   );

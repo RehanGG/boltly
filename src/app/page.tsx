@@ -5,12 +5,10 @@ import RecentTools from "@/components/home/RecentTools";
 import SearchBar from "@/components/home/SearchBar";
 import JsonLd from "@/components/ui/JsonLd";
 import { tools } from "@/data/tools";
-import { absoluteUrl, SITE_NAME } from "@/lib/seo";
+import { absoluteUrl, DEFAULT_DESCRIPTION, DEFAULT_TITLE, pageMetadata, SITE_NAME } from "@/lib/seo";
 import { createSearchIndex, toSearchDocs } from "@/lib/search";
 
-export const metadata: Metadata = {
-  alternates: { canonical: absoluteUrl("/") },
-};
+export const metadata: Metadata = pageMetadata(DEFAULT_TITLE, DEFAULT_DESCRIPTION, "/");
 
 export default function Home() {
   // The search index is built here, at build time, from the registry.

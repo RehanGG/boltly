@@ -16,7 +16,19 @@ export function categoryPath(category: Pick<Category, "slug">): string {
   return `/${category.slug}/`;
 }
 
-function pageMetadata(title: string, description: string, path: string): Metadata {
+// 1200 x 630 social preview used by every page (public/og-default.png).
+export const DEFAULT_OG_IMAGE = {
+  url: absoluteUrl("/og-default.png"),
+  width: 1200,
+  height: 630,
+  alt: `${SITE_NAME} – free online tools and calculators`,
+};
+
+export const DEFAULT_TITLE = `${SITE_NAME} – Free Online Tools and Calculators`;
+export const DEFAULT_DESCRIPTION =
+  "Free, fast online tools and calculators. No sign-up, and your data stays in your browser.";
+
+export function pageMetadata(title: string, description: string, path: string): Metadata {
   const url = absoluteUrl(path);
   return {
     title: { absolute: title },
@@ -28,8 +40,9 @@ function pageMetadata(title: string, description: string, path: string): Metadat
       title,
       description,
       url,
+      images: [DEFAULT_OG_IMAGE],
     },
-    twitter: { card: "summary", title, description },
+    twitter: { card: "summary_large_image", title, description, images: [DEFAULT_OG_IMAGE.url] },
   };
 }
 

@@ -83,6 +83,9 @@ describe("convertUnits behaviour", () => {
     expect(convertUnits({ category: "temperature", value: -1, from: "k", to: "c" })).toMatchObject({ ok: false });
     expect(convertUnits({ category: "length", value: 1, from: "m", to: "kg" })).toMatchObject({ ok: false, field: "unit" });
     expect(Number.isFinite(conv("length", 1e300, "km", "mm"))).toBe(true);
+    // results that overflow are refused instead of showing Infinity
+    expect(convertUnits({ category: "length", value: 1e308, from: "km", to: "mm" })).toMatchObject({ ok: false, field: "value" });
+    expect(convertUnits({ category: "temperature", value: 1e308, from: "k", to: "f" })).toMatchObject({ ok: false, field: "value" });
   });
 
   it("has unique unit ids and a base unit of factor 1 in every group", () => {

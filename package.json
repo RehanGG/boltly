@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "test": "vitest run",
-    "check:size": "node scripts/check-size.mjs"
+    "check:size": "node scripts/check-size.mjs",
+    "qa": "node scripts/qa.mjs"
   },
   "dependencies": {
     "browser-image-compression": "^2.0.2",

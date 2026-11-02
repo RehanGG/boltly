@@ -1,6 +1,9 @@
 import Link from "next/link";
+import CookieSettingsButton from "@/components/consent/CookieSettingsButton";
 import { categories } from "@/data/categories";
+import { LEGAL_PAGES } from "@/data/site";
 import { SITE_NAME } from "@/lib/seo";
+import { THIRD_PARTIES_ENABLED } from "@/lib/thirdparty";
 import Logo from "./Logo";
 
 const link =
@@ -32,10 +35,18 @@ export default function Footer() {
         <nav aria-label="Company and legal">
           <h2 className="text-sm font-semibold text-text">{SITE_NAME}</h2>
           <ul>
-            <li><Link href="/about/" className={link}>About</Link></li>
-            <li><Link href="/contact/" className={link}>Contact</Link></li>
-            <li><Link href="/privacy-policy/" className={link}>Privacy Policy</Link></li>
-            <li><Link href="/terms/" className={link}>Terms</Link></li>
+            {LEGAL_PAGES.map((page) => (
+              <li key={page.path}>
+                <Link href={page.path} className={link}>
+                  {page.name}
+                </Link>
+              </li>
+            ))}
+            {THIRD_PARTIES_ENABLED && (
+              <li>
+                <CookieSettingsButton className={link} />
+              </li>
+            )}
           </ul>
         </nav>
       </div>

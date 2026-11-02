@@ -55,6 +55,7 @@ describe("calculatePay", () => {
     expect(calculatePay({ ...b, amount: 1, hoursPerWeek: 200 })).toMatchObject({ ok: false, field: "hours" });
     expect(calculatePay({ ...b, amount: 1, weeksPerYear: 0 })).toMatchObject({ ok: false, field: "weeks" });
     expect(calculatePay({ ...b, amount: 1, weeksPerYear: 60 })).toMatchObject({ ok: false, field: "weeks" });
+    expect(calculatePay({ ...b, amount: 1, hoursPerWeek: 1e-300 })).toMatchObject({ ok: false, field: "hours" });
   });
 
   it("does not crash on very large amounts", () => {

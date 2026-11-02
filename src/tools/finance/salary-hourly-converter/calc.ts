@@ -21,8 +21,8 @@ export function calculatePay(input: PayInput): Calc<PayResult> {
   const { amount, period, hoursPerWeek, weeksPerYear } = input;
   const bad = validate([
     ["amount", "Amount", amount, { min: 0, max: MAX_AMOUNT }],
-    ["hours", "Hours per week", hoursPerWeek, { min: 0, exclusiveMin: true, max: 168 }],
-    ["weeks", "Weeks per year", weeksPerYear, { min: 0, exclusiveMin: true, max: 52 }],
+    ["hours", "Hours per week", hoursPerWeek, { min: 0.1, max: 168 }],
+    ["weeks", "Weeks per year", weeksPerYear, { min: 0.1, max: 52 }],
   ]);
   if (bad) return bad;
 

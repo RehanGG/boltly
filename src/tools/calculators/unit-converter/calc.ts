@@ -10,6 +10,12 @@ export interface ConvertInput {
 
 const ABSOLUTE_ZERO_C = -273.15;
 
+function finite(result: number): Calc<number> {
+  return Number.isFinite(result)
+    ? { ok: true, value: result }
+    : { ok: false, field: "value", error: "That number is too large to convert." };
+}
+
 function toCelsius(value: number, unit: string): number {
   if (unit === "f") return ((value - 32) * 5) / 9;
   if (unit === "k") return value + ABSOLUTE_ZERO_C;
@@ -36,9 +42,9 @@ export function convertUnits({ category, value, from, to }: ConvertInput): Calc<
     if (celsius < ABSOLUTE_ZERO_C - 1e-9) {
       return { ok: false, field: "value", error: "That is below absolute zero (-273.15 °C)." };
     }
-    return { ok: true, value: fromCelsius(celsius, to) };
+    return finite(fromCelsius(celsius, to));
   }
-  return { ok: true, value: (value * source.factor) / target.factor };
+  return finite((value * source.factor) / target.factor);
 }
 
 // Plain text with up to 10 significant digits and no thousands separators,

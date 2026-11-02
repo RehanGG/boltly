@@ -1,0 +1,7 @@
+# ads.txt placeholder for boltly.io
+#
+# Once Google AdSense approves the site, replace the line below with the one shown
+# in your AdSense account (Sites > ads.txt), using your own publisher ID, then remove
+# the leading "#". It has the form:
+#
+# google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0

@@ -453,6 +453,8 @@ Suggested build order for one developer, about 5 to 6 weeks. Adjust the pace to 
 - [ ] Sitemap lists every tool and loads without errors.
 - [ ] Legal pages are linked in the footer and the consent banner works.
 
+Automated helpers for this checklist: `npm run qa` audits the built site (titles, descriptions, canonicals, H1s, JSON-LD, links, sitemap) and `npm run check:size` reports page weight and on-demand libraries.
+
 **Deliverables from the developer:** the GitHub repository, a live production URL, a short README (setup, how to add a tool in 3 steps), and the passing QA checklist.
 
 ## 11. Visual design system
