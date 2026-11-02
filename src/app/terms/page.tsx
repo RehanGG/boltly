@@ -65,10 +65,10 @@ export default function TermsPage() {
         </p>
       </LegalSection>
 
-      <LegalSection title="Advertising and third-party links">
+      <LegalSection title="Third-party links">
         <p>
-          The site shows advertising and may link to other websites. We do not control those sites or the ads shown and are not responsible
-          for them. Our <Link href="/privacy-policy/">Privacy Policy</Link> explains how advertising and cookies work here.
+          The site may link to other websites. We do not control those sites and are not responsible for them. Our{" "}
+          <Link href="/privacy-policy/">Privacy Policy</Link> explains how cookies work here.
         </p>
       </LegalSection>
 

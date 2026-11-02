@@ -6,7 +6,7 @@ import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata(
   "Privacy Policy – Boltly",
-  "How Boltly handles your data: tools run in your browser, files are not uploaded, and analytics and ad cookies are used only if you agree.",
+  "How Boltly handles your data: tools run in your browser, files are not uploaded, and analytics cookies are used only if you agree.",
   "/privacy-policy/",
 );
 
@@ -29,7 +29,7 @@ export default function PrivacyPolicyPage() {
         <ul>
           <li>The numbers, text and images you put into a tool are processed in your browser. We do not receive them.</li>
           <li>There are no accounts, and we do not ask for your name or email address to use a tool.</li>
-          <li>Analytics and advertising cookies are used only if you accept them. You can change your mind at any time.</li>
+          <li>Analytics cookies are used only if you accept them. You can change your mind at any time.</li>
           <li>We keep a few small settings in your browser, such as your theme and recently used tools.</li>
         </ul>
       </LegalSection>
@@ -54,7 +54,7 @@ export default function PrivacyPolicyPage() {
 
       <LegalSection title="Information collected when you accept cookies">
         <p>
-          If you click Accept on our cookie notice, we use two kinds of third-party service. If you click Reject, we do not load them.
+          If you click Accept on our cookie notice, we use a third-party analytics service. If you click Reject, we do not load it.
         </p>
         <ul>
           <li>
@@ -62,11 +62,13 @@ export default function PrivacyPolicyPage() {
             device, browser and country they use. It sets cookies such as <code>_ga</code> and may use your IP address to work out an
             approximate location. We use it to improve the site.
           </li>
+          {/* Add back when AdSense is live:
           <li>
             <strong>Advertising (Google AdSense).</strong> This shows ads that help pay for the site. Google and its partners may set cookies
             or use similar technology to show and measure ads, and, depending on your settings and location, to show ads based on your
             earlier visits to this and other websites.
           </li>
+          */}
         </ul>
         <p>
           We also do not load fonts or other files from third parties when you use a tool. Our fonts are served from our own site.
@@ -81,9 +83,11 @@ export default function PrivacyPolicyPage() {
           <li>
             <strong>Analytics (only if you accept):</strong> Google Analytics cookies, which usually last up to two years.
           </li>
+          {/* Add back when AdSense is live:
           <li>
             <strong>Advertising (only if you accept):</strong> cookies from Google and its advertising partners. Their lifetimes vary.
           </li>
+          */}
         </ul>
         <p>
           You can change your choice at any time with the cookie settings link at the bottom of any page. If you withdraw consent, new
@@ -92,6 +96,7 @@ export default function PrivacyPolicyPage() {
         </p>
       </LegalSection>
 
+      {/* Add back when AdSense is live:
       <LegalSection title="Advertising and Google">
         <p>
           Third-party vendors, including Google, use cookies to serve ads based on a user&apos;s previous visits to this website or other
@@ -116,6 +121,7 @@ export default function PrivacyPolicyPage() {
           </li>
         </ul>
       </LegalSection>
+      */}
 
       <LegalSection title="Hosting and technical logs">
         <p>
@@ -129,7 +135,7 @@ export default function PrivacyPolicyPage() {
         <p>If you are in the UK or the European Economic Area, we rely on:</p>
         <ul>
           <li>
-            <strong>Your consent</strong> for analytics and advertising cookies. You can withdraw it at any time.
+            <strong>Your consent</strong> for analytics cookies. You can withdraw it at any time.
           </li>
           <li>
             <strong>Our legitimate interests</strong> in keeping the site secure, working properly and free from abuse, for essential storage
@@ -140,8 +146,8 @@ export default function PrivacyPolicyPage() {
 
       <LegalSection title="Who we share information with">
         <p>
-          We do not sell your personal information. Information is shared only with the service providers described above: Google (analytics
-          and advertising, when you accept) and our hosting provider. They may process information outside your country, including in the
+          We do not sell your personal information. Information is shared only with the service providers described above: Google (analytics,
+          when you accept) and our hosting provider. They may process information outside your country, including in the
           United States, under safeguards required by law.
         </p>
       </LegalSection>

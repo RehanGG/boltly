@@ -38,7 +38,7 @@ export default function ContactPage() {
             we will help where we can.
           </li>
           <li>
-            <strong>Business or advertising questions.</strong> Include your company name and what you have in mind.
+            <strong>Business questions.</strong> Include your company name and what you have in mind.
           </li>
         </ul>
       </LegalSection>

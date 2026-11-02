@@ -6,8 +6,8 @@ import Script from "next/script";
 import Button from "@/components/ui/Button";
 import { OPEN_CONSENT_EVENT, writeConsent, type Consent } from "@/lib/consent";
 import {
-  ADSENSE_CLIENT,
-  adsenseScriptUrl,
+  // ADSENSE_CLIENT,
+  // adsenseScriptUrl,
   GA_ID,
   gaInlineScript,
   gaScriptUrl,
@@ -53,7 +53,7 @@ function Banner({ current, focusOnOpen, onChoose }: { current: Consent | null; f
             Cookies on Boltly
           </p>
           <p id="consent-text" className="text-sm text-muted">
-            We would like to use cookies for analytics and for ads that pay for this site. Your tools and files always stay in your browser.
+            We would like to use cookies for analytics, to see which tools are useful. Your tools and files always stay in your browser.
             {current && ` Your current choice: ${current === "granted" ? "accepted" : "rejected"}.`}{" "}
             <Link href="/privacy-policy/" className="text-primary underline">
               Privacy Policy
@@ -108,9 +108,11 @@ export default function ThirdParties() {
           </Script>
         </>
       )}
+      {/* AdSense is off for now. To switch it on, restore the imports above and this block:
       {load && ADSENSE_CLIENT && (
         <Script src={adsenseScriptUrl(ADSENSE_CLIENT)} strategy="afterInteractive" crossOrigin="anonymous" />
       )}
+      */}
     </>
   );
 }

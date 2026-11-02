@@ -1,4 +1,6 @@
-// Settings for Google Analytics 4 and AdSense. Both stay switched off until their
+// Settings for Google Analytics 4. AdSense is switched off for now: its lines below are
+// commented out, and the helper functions stay (unused) so they can be switched back on.
+// Each service stays off until its
 // environment variable holds a valid ID, so a missing or mistyped value can never
 // put a broken script on the page.
 export function validGaId(value: string | undefined): string | null {
@@ -17,8 +19,11 @@ export function validAdsenseSlot(value: string | undefined): string | null {
 }
 
 export const GA_ID = validGaId(process.env.NEXT_PUBLIC_GA_ID);
-export const ADSENSE_CLIENT = validAdsenseClient(process.env.NEXT_PUBLIC_ADSENSE_CLIENT);
-export const ADSENSE_SLOT = validAdsenseSlot(process.env.NEXT_PUBLIC_ADSENSE_SLOT);
+// AdSense is off for now. To switch it on, restore these two lines and delete the two below.
+// export const ADSENSE_CLIENT = validAdsenseClient(process.env.NEXT_PUBLIC_ADSENSE_CLIENT);
+// export const ADSENSE_SLOT = validAdsenseSlot(process.env.NEXT_PUBLIC_ADSENSE_SLOT);
+export const ADSENSE_CLIENT: string | null = null;
+export const ADSENSE_SLOT: string | null = null;
 
 // True when there is anything to ask consent for.
 export const THIRD_PARTIES_ENABLED = GA_ID !== null || ADSENSE_CLIENT !== null;

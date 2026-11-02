@@ -19,11 +19,10 @@ npm run dev                  # http://localhost:3000
 | `NEXT_PUBLIC_SITE_URL` | Canonical URL, sitemap and Open Graph links |
 | `NEXT_PUBLIC_SITE_NAME` | Site name |
 | `NEXT_PUBLIC_GA_ID` | Google Analytics 4 ID (`G-…`). Empty turns analytics off |
-| `NEXT_PUBLIC_ADSENSE_CLIENT` | AdSense publisher ID (`ca-pub-…`). Empty turns ads off |
-| `NEXT_PUBLIC_ADSENSE_SLOT` | AdSense ad unit ID used by the ad slots |
+| ~~`NEXT_PUBLIC_ADSENSE_CLIENT`~~ / ~~`NEXT_PUBLIC_ADSENSE_SLOT`~~ | AdSense is switched off for now (commented out in `.env.example` and `src/lib/thirdparty.ts`) |
 | `NEXT_PUBLIC_CONTACT_EMAIL` | Address shown on the Contact and legal pages |
 
-GA4 and AdSense load only after the visitor accepts cookies and then interacts with the page. With both IDs empty there is no cookie banner and no third-party code.
+GA4 loads only after the visitor accepts cookies and then interacts with the page. With the ID empty there is no cookie banner and no third-party code. AdSense is switched off for now.
 
 ## Commands
 
@@ -47,6 +46,5 @@ Load heavy libraries with `await import("…")` inside the tool that needs them.
 
 ## Before launch
 
-- Fill in the `[bracketed]` placeholders in `src/data/site.ts` and have the Privacy Policy and Terms reviewed.
-- Replace `public/ads.txt` with the line from your AdSense account once the site is approved.
-- For visitors in the EEA and UK, AdSense expects a Google-certified consent tool. The built-in banner controls Boltly's own loading of GA4 and AdSense; check whether you also need Google's Privacy & messaging tool.
+- Have the Privacy Policy and Terms reviewed (business name, country and contact email are set in `src/data/site.ts`).
+- When you turn AdSense on: restore the commented lines (`src/lib/thirdparty.ts`, `src/components/consent/ThirdParties.tsx`, `.env.example`), replace `public/ads.txt` with the line from your AdSense account, and update the banner text. For visitors in the EEA and UK, AdSense expects a Google-certified consent tool, so check whether you also need Google's Privacy & messaging tool.

@@ -55,8 +55,8 @@ export default function AboutPage() {
 
       <LegalSection title="How the site is paid for">
         <p>
-          Boltly is free to use. We show advertising to cover the costs of running and improving the site, and we use basic analytics to learn
-          which tools people need. Advertising and analytics cookies are only used if you agree to them, and you can change your choice at any
+          Boltly is free to use. We use basic analytics to learn
+          which tools people need. Analytics cookies are only used if you agree to them, and you can change your choice at any
           time from the cookie settings link at the bottom of every page.
         </p>
       </LegalSection>

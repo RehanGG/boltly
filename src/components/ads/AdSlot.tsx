@@ -5,6 +5,8 @@ import clsx from "clsx";
 import { ADSENSE_CLIENT, ADSENSE_SLOT } from "@/lib/thirdparty";
 import { useConsent } from "@/lib/useConsent";
 
+// AdSense is off for now (ADSENSE_CLIENT and ADSENSE_SLOT are null in src/lib/thirdparty.ts),
+// so in production this renders nothing and takes no space. The code is kept for later.
 // Fixed minimum height so the page never jumps when an ad loads.
 // Development shows a gray placeholder. Production shows a real ad unit only when
 // the visitor accepted ad cookies and both NEXT_PUBLIC_ADSENSE_CLIENT and
