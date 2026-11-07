@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import AdSlot from "@/components/ads/AdSlot";
-import Breadcrumbs from "@/components/layout/Breadcrumbs";
+import SectionHeader from "@/components/home/SectionHeader";
+import PageHero from "@/components/layout/PageHero";
 import FAQ from "@/components/tool/FAQ";
 import RelatedTools from "@/components/tool/RelatedTools";
 import ToolShell from "@/components/tool/ToolShell";
@@ -53,18 +54,15 @@ export default async function ToolPage({ params }: Props) {
       : undefined;
 
   return (
-    <article className="mx-auto max-w-page px-4 py-6">
+    <article>
       <RecordVisit slug={tool.slug} />
       <JsonLd data={breadcrumbJsonLd(crumbs)} />
       <JsonLd data={webApplicationJsonLd(tool)} />
       <JsonLd data={faqJsonLd(content.faqs)} />
 
-      <Breadcrumbs crumbs={crumbs} />
-      <h1 className="mt-2 text-h1 font-semibold leading-tight md:text-h1-lg">
-        {tool.name}
-      </h1>
-      <p className="mt-2 text-muted">{tool.shortDescription}</p>
+      <PageHero crumbs={crumbs} title={tool.name} description={tool.shortDescription} />
 
+      <div className="mx-auto max-w-page px-4 py-6">
       <div className="mt-6">
         <ToolShell localOnly={localOnly} localNote={localNote}>
           <ToolLoader slug={tool.slug} />
@@ -75,10 +73,8 @@ export default async function ToolPage({ params }: Props) {
 
       <div className="mt-10 max-w-tool space-y-10">
         <section aria-labelledby="how-heading">
-          <h2 id="how-heading" className="text-h2 font-semibold leading-snug">
-            How to use the {tool.name}
-          </h2>
-          <ol className="mt-3 list-decimal space-y-1 pl-6">
+          <SectionHeader id="how-heading" title={`How to use the ${tool.name}`} />
+          <ol className="list-decimal space-y-1 pl-6">
             {content.steps.map((s) => (
               <li key={s}>{s}</li>
             ))}
@@ -86,10 +82,8 @@ export default async function ToolPage({ params }: Props) {
         </section>
 
         <section aria-labelledby="about-heading">
-          <h2 id="about-heading" className="text-h2 font-semibold leading-snug">
-            About the {tool.name}
-          </h2>
-          <p className="mt-3">{content.intro}</p>
+          <SectionHeader id="about-heading" title={`About the ${tool.name}`} />
+          <p>{content.intro}</p>
           {content.method.map((p) => (
             <p key={p} className="mt-3">
               {p}
@@ -98,12 +92,8 @@ export default async function ToolPage({ params }: Props) {
         </section>
 
         <section aria-labelledby="faq-heading">
-          <h2 id="faq-heading" className="text-h2 font-semibold leading-snug">
-            Frequently asked questions
-          </h2>
-          <div className="mt-3">
-            <FAQ faqs={content.faqs} />
-          </div>
+          <SectionHeader id="faq-heading" title="Frequently asked questions" />
+          <FAQ faqs={content.faqs} />
         </section>
       </div>
 
@@ -112,6 +102,7 @@ export default async function ToolPage({ params }: Props) {
       </div>
 
       <AdSlot className="mt-10 max-w-tool" />
+      </div>
     </article>
   );
 }

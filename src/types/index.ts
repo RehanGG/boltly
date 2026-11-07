@@ -9,8 +9,12 @@ export interface Category {
   slug: CategorySlug;
   name: string; // "Finance Calculators"
   shortName: string; // header menu label
-  description: string;
+  description: string; // one line, used on cards
   icon: string; // lucide icon name
+  metaTitle: string; // max 60 chars
+  metaDescription: string; // max 155 chars
+  intro: string; // the line under the category page heading
+  about: string[]; // unique paragraphs about the category, for readers and search engines
 }
 
 export interface Tool {

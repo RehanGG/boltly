@@ -136,7 +136,7 @@ export default function SearchBar({
           role="combobox"
           autoComplete="off"
           spellCheck={false}
-          placeholder="Search tools, e.g. EMI, word counter, QR code"
+          placeholder="Search tools, e.g. EMI or QR code"
           value={query}
           onChange={(e) => {
             setQuery(e.target.value);
@@ -152,7 +152,7 @@ export default function SearchBar({
           aria-controls={listId}
           aria-autocomplete="list"
           aria-activedescendant={active >= 0 ? `${listId}-${active}` : undefined}
-          className="h-14 w-full rounded-card border border-border bg-bg pl-12 pr-12 text-base text-text shadow-card placeholder:text-muted focus:border-primary"
+          className="h-14 w-full rounded-card border-2 border-border bg-bg pl-12 pr-12 text-base text-text shadow-[0_10px_30px_rgb(15_23_42/0.10)] transition-shadow duration-150 placeholder:text-muted focus:border-primary focus:shadow-[0_10px_30px_color-mix(in_srgb,var(--primary)_22%,transparent)]"
         />
         <kbd
           aria-hidden="true"

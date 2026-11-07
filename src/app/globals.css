@@ -99,6 +99,23 @@
   }
 }
 
+/* Homepage hero: a soft glow and a faint dot grid. Decorative only; text never sits on a strong color. */
+.hero-glow {
+  background-image:
+    radial-gradient(ellipse 70% 60% at 50% -10%, color-mix(in srgb, var(--primary) 16%, transparent), transparent 70%),
+    radial-gradient(ellipse 40% 50% at 94% 6%, color-mix(in srgb, var(--accent) 18%, transparent), transparent 70%),
+    radial-gradient(ellipse 35% 45% at 4% 32%, color-mix(in srgb, var(--primary) 9%, transparent), transparent 70%);
+}
+.hero-dots {
+  background-image: radial-gradient(color-mix(in srgb, var(--text) 16%, transparent) 1px, transparent 1.3px);
+  background-size: 22px 22px;
+  -webkit-mask-image: linear-gradient(to bottom, #000, transparent 80%);
+  mask-image: linear-gradient(to bottom, #000, transparent 80%);
+}
+.marker {
+  background-image: linear-gradient(transparent 60%, color-mix(in srgb, var(--accent) 45%, transparent) 60% 92%, transparent 92%);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

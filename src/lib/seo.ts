@@ -24,9 +24,9 @@ export const DEFAULT_OG_IMAGE = {
   alt: `${SITE_NAME} – free online tools and calculators`,
 };
 
-export const DEFAULT_TITLE = `${SITE_NAME} – Free Online Tools and Calculators`;
+export const DEFAULT_TITLE = `Free Online Calculators, Converters and Tools | ${SITE_NAME}`;
 export const DEFAULT_DESCRIPTION =
-  "Free, fast online tools and calculators. No sign-up, and your data stays in your browser.";
+  "30 free online tools: EMI and loan calculators, word counter, image compressor, QR code and password generators. No sign-up, all in your browser.";
 
 export function pageMetadata(title: string, description: string, path: string): Metadata {
   const url = absoluteUrl(path);
@@ -51,11 +51,56 @@ export function toolMetadata(tool: Tool): Metadata {
 }
 
 export function categoryMetadata(category: Category): Metadata {
-  return pageMetadata(
-    `${category.name} – Free Online Tools | ${SITE_NAME}`,
-    category.description,
-    categoryPath(category),
-  );
+  return pageMetadata(category.metaTitle, category.metaDescription, categoryPath(category));
+}
+
+// Homepage: who runs the site (helps Google show the name and logo) and the site itself.
+export function organizationJsonLd(email: string) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": `${SITE_URL}/#organization`,
+    name: SITE_NAME,
+    url: absoluteUrl("/"),
+    logo: { "@type": "ImageObject", url: absoluteUrl("/apple-touch-icon.png"), width: 180, height: 180 },
+    email,
+  };
+}
+
+export function websiteJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${SITE_URL}/#website`,
+    name: SITE_NAME,
+    alternateName: `${SITE_NAME}.io`,
+    url: absoluteUrl("/"),
+    description: DEFAULT_DESCRIPTION,
+    inLanguage: "en",
+    publisher: { "@id": `${SITE_URL}/#organization` },
+  };
+}
+
+// Category pages: the page is a collection, and its tools are an ordered list.
+export function collectionPageJsonLd(category: Category, tools: Pick<Tool, "name" | "category" | "slug">[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: category.name,
+    description: category.metaDescription,
+    url: absoluteUrl(categoryPath(category)),
+    isPartOf: { "@id": `${SITE_URL}/#website` },
+    mainEntity: {
+      "@type": "ItemList",
+      numberOfItems: tools.length,
+      itemListElement: tools.map((t, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        name: t.name,
+        url: absoluteUrl(toolPath(t)),
+      })),
+    },
+  };
 }
 
 export interface Crumb {

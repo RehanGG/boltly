@@ -1,12 +1,15 @@
 import type { ReactNode } from "react";
 import JsonLd from "@/components/ui/JsonLd";
 import { breadcrumbJsonLd } from "@/lib/seo";
-import Breadcrumbs from "./Breadcrumbs";
+import PageHero from "./PageHero";
 
 export function LegalSection({ title, children }: { title: string; children: ReactNode }) {
   return (
     <section>
-      <h2 className="text-h2 font-semibold leading-snug">{title}</h2>
+      <h2 className="flex items-center gap-3 text-h2 font-semibold leading-snug">
+        <span className="h-6 w-1 shrink-0 rounded-full bg-accent" aria-hidden="true" />
+        {title}
+      </h2>
       <div className="mt-3 space-y-3 [&_a]:text-primary [&_a]:underline [&_li]:pl-1 [&_ul]:list-disc [&_ul]:space-y-1 [&_ul]:pl-6">
         {children}
       </div>
@@ -33,13 +36,14 @@ export default function LegalPage({
     { name: title, path },
   ];
   return (
-    <article className="mx-auto max-w-page px-4 py-6">
+    <article>
       <JsonLd data={breadcrumbJsonLd(crumbs)} />
-      <Breadcrumbs crumbs={crumbs} />
-      <h1 className="mt-2 text-h1 font-semibold leading-tight md:text-h1-lg">{title}</h1>
-      {updated && <p className="mt-2 text-sm text-muted">Last updated: {updated}</p>}
-      {intro && <p className="mt-3 max-w-tool text-lg text-muted">{intro}</p>}
-      <div className="mt-8 max-w-tool space-y-8">{children}</div>
+      <PageHero crumbs={crumbs} title={title} description={intro}>
+        {updated && <p className="mt-2 text-sm text-muted">Last updated: {updated}</p>}
+      </PageHero>
+      <div className="mx-auto max-w-page px-4 py-10">
+        <div className="max-w-tool space-y-8">{children}</div>
+      </div>
     </article>
   );
 }

@@ -244,13 +244,16 @@ The page uses `generateStaticParams` to build every `category/tool` combination 
 
 ## 6. Homepage, search and navigation
 
-The homepage shows little and gets people to a tool fast. Sections from top to bottom:
+The homepage gets people to a tool fast: the first screen is only the hero and search. Further down it adds content for search engines and for browsing. Sections from top to bottom:
 
 1. **Header:** logo, a short category menu (5 items), and a search icon on mobile.
-2. **Hero:** headline, one line of copy, and a large search bar with instant suggestions.
+2. **Hero:** a small "Fast, free and private" badge, headline with an amber marker highlight, one line of copy, a large search bar with instant suggestions, and one-click chips for the most-used tools (5 on desktop, 4 on phones). Background: a soft blue and amber glow with a faint dot grid (CSS only, no images or animation).
+2a. **Trust strip:** four short facts with icons: number of free tools, no sign-up, files stay on your device, works on any device.
 3. **Popular tools:** 10 tool cards chosen with `featured: true` in the registry (EMI Calculator, Percentage Calculator, Age Calculator, Word Counter, Image Compressor, QR Code Generator, Password Generator, Unit Converter, Discount Calculator, Loan Calculator).
 4. **Category grid:** 5 cards, each with an icon, name, tool count and 3 example tool names.
 5. **Recently used:** the last 4 tools the visitor opened, stored in the browser. Hidden for first-time visitors.
+5a. **All tools directory:** every tool, grouped by category, linked by name. Keeps every tool one click from the homepage and gives search engines a link to every page.
+5b. **About text:** a short, plain description of the site (about 100 words), for readers and search engines.
 6. **Footer:** categories, About, Contact, Privacy Policy, Terms.
 
 **Search**
@@ -485,7 +488,8 @@ Text on the primary color must be white; all combinations must meet WCAG AA cont
 **Typography and spacing**
 
 - Font: Inter, loaded with `next/font/google` (no external font request at runtime). System font fallback.
-- Sizes: H1 30 px (36 px on desktop), H2 22 px, body 16 px, small 14 px. Line height 1.6 for body text.
+- Sizes: H1 30 px (36 px on desktop) on tool and legal pages; the homepage hero H1 is 34 px (48 px on desktop) and category page H1s are 32 px (40 px on desktop). H2 22 px, body 16 px, small 14 px. Line height 1.6 for body text.
+- Page headers: every page below the homepage starts with the same glow band as the homepage hero (breadcrumbs, H1, one-line description), and section H2s have a small amber accent bar, so the whole site looks consistent.
 - Spacing scale: multiples of 4 px. Page content max width 1100 px; tool panel max width 760 px; 16 px side padding on mobile.
 - Cards and panels: 12 px corner radius, 1 px border, very light shadow. Buttons: 10 px radius, 44 px minimum height.
 
