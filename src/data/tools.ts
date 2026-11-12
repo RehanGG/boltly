@@ -99,7 +99,7 @@ export const tools: Tool[] = [
       "Free password generator. Choose a length and character types to create a strong, random password that never leaves your device.",
     keywords: ["password", "random", "secure", "strong", "generate"],
     featured: true,
-    related: ["random-number-generator", "qr-code-generator"],
+    related: ["random-number-generator", "qr-code-generator", "barcode-generator"],
     icon: "KeyRound",
   },
   {

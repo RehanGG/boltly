@@ -59,6 +59,17 @@ describe("tool registry", () => {
     expect(related.every((t) => tools.includes(t))).toBe(true);
   });
 
+  it("lists 3 to 4 related tools that all exist, with no repeats and never itself", () => {
+    const slugs = new Set(tools.map((t) => t.slug));
+    for (const t of tools) {
+      expect(t.related.length, t.slug).toBeGreaterThanOrEqual(3);
+      expect(t.related.length, t.slug).toBeLessThanOrEqual(4);
+      expect(new Set(t.related).size, t.slug).toBe(t.related.length);
+      expect(t.related, t.slug).not.toContain(t.slug);
+      for (const r of t.related) expect(slugs.has(r), `${t.slug} -> ${r}`).toBe(true);
+    }
+  });
+
   it("only uses tools and URLs from the master list", () => {
     for (const t of tools) {
       expect(MASTER_LIST, t.slug).toContain(`${t.category}/${t.slug}`);
