@@ -186,7 +186,7 @@ export const tools: Tool[] = [
     metaDescription:
       "Free sales tax and VAT calculator. Add tax to a price or take it out, and see the net, tax and gross amounts instantly.",
     keywords: ["sales tax", "vat", "gst", "tax", "net", "gross"],
-    related: ["discount-calculator", "percentage-calculator", "profit-margin-calculator", "tip-calculator"],
+    related: ["sales-tax-calculator-usa", "discount-calculator", "percentage-calculator", "profit-margin-calculator"],
     icon: "Receipt",
   },
   {
@@ -380,6 +380,18 @@ export const tools: Tool[] = [
     keywords: ["barcode", "code 128", "ean-13", "ean13", "upc", "check digit", "label"],
     related: ["qr-code-generator", "random-number-generator", "password-generator"],
     icon: "Barcode",
+  },
+  {
+    slug: "sales-tax-calculator-usa",
+    category: "finance",
+    name: "US Sales Tax Calculator",
+    shortDescription: "Work out sales tax with your state's official rate plus any local tax.",
+    metaTitle: "US Sales Tax Calculator – Rates for All 50 States",
+    metaDescription:
+      "Free US sales tax calculator with the official statewide rate for all 50 states and DC. Add your local rate to see the tax and total price.",
+    keywords: ["us sales tax", "state sales tax", "sales tax by state", "california sales tax", "texas sales tax", "local sales tax", "usa"],
+    related: ["sales-tax-vat-calculator", "discount-calculator", "profit-margin-calculator", "tip-calculator"],
+    icon: "MapPin",
   },
 ];
 

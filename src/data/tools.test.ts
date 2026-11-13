@@ -19,6 +19,9 @@ const MASTER_LIST = [
   "generators/barcode-generator",
 ];
 
+// Region-specific versions approved in GROWTH_PLAN.md (section 3), on top of the master list.
+const REGIONAL_VARIANTS = ["finance/sales-tax-calculator-usa"];
+
 describe("tool registry", () => {
   it("has unique slugs and valid categories", () => {
     const slugs = tools.map((t) => t.slug);
@@ -72,7 +75,7 @@ describe("tool registry", () => {
 
   it("only uses tools and URLs from the master list", () => {
     for (const t of tools) {
-      expect(MASTER_LIST, t.slug).toContain(`${t.category}/${t.slug}`);
+      expect([...MASTER_LIST, ...REGIONAL_VARIANTS], t.slug).toContain(`${t.category}/${t.slug}`);
     }
   });
 
@@ -95,8 +98,8 @@ describe("tool registry", () => {
     const words = (text: string) => text.trim().split(/\s+/).filter(Boolean).length;
     const allSlugs = tools.map((t) => t.slug);
 
-    it("covers all 30 tools from the master list", () => {
-      expect(allSlugs).toHaveLength(30);
+    it("covers every tool from the master list and the regional variants", () => {
+      expect(allSlugs).toHaveLength(MASTER_LIST.length + REGIONAL_VARIANTS.length);
       for (const slug of allSlugs) expect(toolContent[slug], slug).toBeDefined();
     });
 

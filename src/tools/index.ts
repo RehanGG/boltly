@@ -12,6 +12,7 @@ export const BUILT_TOOL_SLUGS: string[] = [
   "savings-goal-calculator",
   "discount-calculator",
   "sales-tax-vat-calculator",
+  "sales-tax-calculator-usa",
   "tip-calculator",
   "profit-margin-calculator",
   "salary-hourly-converter",

@@ -14,6 +14,7 @@ const toolComponents: Record<string, ComponentType> = {
   "savings-goal-calculator": dynamic(() => import("./finance/savings-goal-calculator")),
   "discount-calculator": dynamic(() => import("./finance/discount-calculator")),
   "sales-tax-vat-calculator": dynamic(() => import("./finance/sales-tax-vat-calculator")),
+  "sales-tax-calculator-usa": dynamic(() => import("./finance/sales-tax-calculator-usa")),
   "tip-calculator": dynamic(() => import("./finance/tip-calculator")),
   "profit-margin-calculator": dynamic(() => import("./finance/profit-margin-calculator")),
   "salary-hourly-converter": dynamic(() => import("./finance/salary-hourly-converter")),

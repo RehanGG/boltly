@@ -10,6 +10,11 @@ export const PAGE_UPDATED: Record<string, string> = {
   "/generators/password-generator/": "2026-11-13", // third related tool added
   "/privacy-policy/": "2026-11-14", // clearer page title
   "/terms/": "2026-11-14", // clearer page title
+  "/finance/sales-tax-calculator-usa/": "2026-11-14", // new page
+  "/finance/sales-tax-vat-calculator/": "2026-11-14", // links to the US version
+  "/finance/": "2026-11-14", // lists the new tool
+  "/": "2026-11-14", // tool count and directory include the new tool
+  "/about/": "2026-11-14", // tool count
 };
 
 export function lastModified(path: string): string {

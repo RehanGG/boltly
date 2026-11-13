@@ -14,6 +14,7 @@ import { calculateMargin } from "./finance/profit-margin-calculator/calc";
 import { calculatePay } from "./finance/salary-hourly-converter/calc";
 import { calculateSavingsGoal } from "./finance/savings-goal-calculator/calc";
 import { calculateTax } from "./finance/sales-tax-vat-calculator/calc";
+import { calculateUsSalesTax } from "./finance/sales-tax-calculator-usa/calc";
 import { calculateTip } from "./finance/tip-calculator/calc";
 import { calculateResize, linkedDimension } from "./image/image-resizer/calc";
 import { compressOptions } from "./image/image-compressor/calc";
@@ -66,6 +67,8 @@ describe("numeric tools never crash on bad numbers", () => {
     ["Discount", (n) => calculateDiscount({ price: n, discountPct: n, secondPct: n })],
     ["Sales tax add", (n) => calculateTax({ amount: n, ratePct: n, mode: "add" })],
     ["Sales tax remove", (n) => calculateTax({ amount: n, ratePct: n, mode: "remove" })],
+    ["US sales tax", (n) => calculateUsSalesTax({ amount: n, stateCode: "TX", localPct: n, mode: "add" })],
+    ["US sales tax remove", (n) => calculateUsSalesTax({ amount: n, stateCode: "CA", localPct: n, mode: "remove" })],
     ["Tip", (n) => calculateTip({ bill: n, tipPct: n, people: n })],
     ["Margin revenue", (n) => calculateMargin({ cost: n, mode: "revenue", value: n })],
     ["Margin markup", (n) => calculateMargin({ cost: n, mode: "markup", value: n })],

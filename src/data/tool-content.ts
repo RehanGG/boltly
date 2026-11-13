@@ -1,7 +1,7 @@
 import type { ToolContent } from "@/types";
 
 // Intro, steps, method and FAQs per tool, keyed by slug.
-// Page copy for all 30 Phase 1 tools, keyed by slug.
+// Page copy for every tool, keyed by slug.
 export const toolContent: Record<string, ToolContent> = {
   "emi-calculator": {
     intro:
@@ -1230,6 +1230,53 @@ export const toolContent: Record<string, ToolContent> = {
         question: "Is my data uploaded?",
         answer:
           "No. The barcode is drawn in your browser and what you type is never sent anywhere.",
+      },
+    ],
+  },
+  "sales-tax-calculator-usa": {
+    intro:
+      "Sales tax in the United States depends on where you buy. Each state sets its own rate, and in many states cities, counties and special districts add local taxes on top. This calculator starts from your state's official statewide rate, lets you add the local rate for your area, and shows the tax and the total in U.S. dollars.",
+    steps: [
+      "Choose your state from the list.",
+      "Pick whether to add tax to a price or remove it from a total that already includes tax.",
+      "Enter the amount in dollars.",
+      "If your city, county or district charges its own sales tax, enter that local rate.",
+      "Read the sales tax, the combined rate and the total.",
+    ],
+    method: [
+      "The calculator adds two rates together: the statewide rate for the state you choose and the local rate you enter. That combined rate is applied to the price, so the tax is the price times the combined rate divided by 100, and the total is the price plus that tax. To take tax out of a total, the price before tax is the total divided by one plus the combined rate.",
+      "Each statewide rate was read from that state's own tax agency and checked against the Tax Foundation's July 2026 table. For California, Utah and Virginia, the rate shown already includes a local portion that the state charges everywhere. Local rates change often and can differ from one street to the next, so the calculator does not guess them. Look up the exact rate for your address on your state's website, and keep in mind that some states tax groceries, prepared food or vehicles at different rates.",
+    ],
+    faqs: [
+      {
+        question: "Which states have no statewide sales tax?",
+        answer:
+          "Alaska, Delaware, Montana, New Hampshire and Oregon. Alaska still lets some local governments charge sales tax, and New Hampshire taxes meals, room rentals and motor vehicle rentals at 8.5%.",
+      },
+      {
+        question: "Why is the rate on my receipt higher than the state rate?",
+        answer:
+          "Many states let cities, counties and special districts add their own tax. In Texas, for example, local taxes can add up to 2%, for a combined maximum of 8.25%. Enter your local rate to include it.",
+      },
+      {
+        question: "Which states have no local sales tax?",
+        answer:
+          "According to their tax agencies, Connecticut, Kentucky, Maryland and Michigan have no local sales taxes, and Delaware has no state or local sales tax. For those states the calculator uses the statewide rate only.",
+      },
+      {
+        question: "Is every item taxed at the same rate?",
+        answer:
+          "No. Some states use different rates for certain goods. Tennessee taxes food and food ingredients at a 4% state rate, and Virginia taxes groceries at 1%. This calculator uses each state's general rate.",
+      },
+      {
+        question: "How is Hawaii different?",
+        answer:
+          "Hawaii has a general excise tax on businesses instead of a sales tax. The rate is 4%, and businesses may pass it on to customers. Including the county surcharge, the maximum pass-on rate is 4.712%.",
+      },
+      {
+        question: "How current are these rates?",
+        answer:
+          "Every statewide rate was checked on the state's official website on November 14, 2026. Rates can change, local ones especially, so confirm with your state before you file a return or set your prices.",
       },
     ],
   },

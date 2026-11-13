@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import LegalPage, { LegalSection } from "@/components/layout/LegalPage";
 import { categories } from "@/data/categories";
-import { getToolsByCategory } from "@/data/tools";
+import { getToolsByCategory, tools } from "@/data/tools";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata(
   "About Boltly – Free, Private Online Tools",
-  "Boltly offers 30 free online tools and calculators that run in your browser. Learn who we are, how the tools work and how the site is funded.",
+  `Boltly offers ${tools.length} free online tools and calculators that run in your browser. Learn who we are, how the tools work and how the site is funded.`,
   "/about/",
 );
 

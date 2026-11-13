@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { getCategory } from "@/data/categories";
-import { toolPath } from "@/data/tools";
+import { toolPath, tools } from "@/data/tools";
 import type { Category, FaqItem, Tool } from "@/types";
 
 export const SITE_URL = (
@@ -26,7 +26,7 @@ export const DEFAULT_OG_IMAGE = {
 
 export const DEFAULT_TITLE = `Free Online Calculators, Converters and Tools | ${SITE_NAME}`;
 export const DEFAULT_DESCRIPTION =
-  "30 free online tools: EMI and loan calculators, word counter, image compressor, QR code and password generators. No sign-up, all in your browser.";
+  `${tools.length} free online tools: EMI and loan calculators, word counter, image compressor, QR code and password generators. No sign-up, all in your browser.`;
 
 export interface SocialImage {
   url: string;

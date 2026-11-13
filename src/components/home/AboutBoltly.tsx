@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { tools } from "@/data/tools";
 import SectionHeader from "./SectionHeader";
 
 // A short, plain description of the site for readers and search engines.
@@ -8,7 +9,7 @@ export default function AboutBoltly() {
       <SectionHeader id="about-boltly-heading" title="Free online tools for everyday tasks" />
       <div className="max-w-3xl space-y-3 text-text">
         <p>
-          Boltly brings 30 free online tools together in one fast, simple place. Work out a monthly loan payment with the{" "}
+          Boltly brings {tools.length} free online tools together in one fast, simple place. Work out a monthly loan payment with the{" "}
           <Link href="/finance/emi-calculator/" className="text-primary underline">EMI calculator</Link>, check a percentage or your exact age,
           count the words in an essay, compress a photo before you email it, or make a QR code for your Wi-Fi.
         </p>
