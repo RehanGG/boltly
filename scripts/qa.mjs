@@ -80,6 +80,12 @@ for (const file of files) {
   for (const key of ["og:title", "og:description", "og:image", "og:url"]) {
     if (!metaContent(html, "property", key)) fail(urlPath, `missing ${key}`);
   }
+  // The preview image must be a real file in the build.
+  const ogImage = metaContent(html, "property", "og:image");
+  if (ogImage?.startsWith(SITE)) {
+    const file = path.join(OUT, ogImage.slice(SITE.length).split("?")[0]);
+    if (!existsSync(file)) fail(urlPath, `og:image ${ogImage} does not exist in the build`);
+  }
   if (!metaContent(html, "name", "twitter:card")) fail(urlPath, "missing twitter:card");
   if (!metaContent(html, "name", "twitter:image")) fail(urlPath, "missing twitter:image");
 
@@ -137,6 +143,16 @@ for (const file of files) {
     }
     if (!/Related tools/.test(html) && !/related-heading/.test(html)) warnings.push(`${urlPath}: no related tools shown`);
   }
+}
+
+// --- sitemap dates: every URL has a real, non-future <lastmod> ---------------------
+const entries = [...sitemap.matchAll(/<url>([\s\S]*?)<\/url>/g)].map((m) => m[1]);
+const today = new Date().toLocaleDateString("en-CA"); // local date, so a change made today is not "in the future" in UTC
+for (const e of entries) {
+  const loc = e.match(/<loc>([^<]+)<\/loc>/)?.[1];
+  const mod = e.match(/<lastmod>([^<]+)<\/lastmod>/)?.[1];
+  if (!mod) fail("sitemap.xml", `${loc} has no <lastmod>`);
+  else if (Number.isNaN(Date.parse(mod)) || mod.slice(0, 10) > today) fail("sitemap.xml", `${loc} has a bad <lastmod> ${mod}`);
 }
 
 // --- sitemap coverage --------------------------------------------------------

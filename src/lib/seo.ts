@@ -28,7 +28,19 @@ export const DEFAULT_TITLE = `Free Online Calculators, Converters and Tools | ${
 export const DEFAULT_DESCRIPTION =
   "30 free online tools: EMI and loan calculators, word counter, image compressor, QR code and password generators. No sign-up, all in your browser.";
 
-export function pageMetadata(title: string, description: string, path: string): Metadata {
+export interface SocialImage {
+  url: string;
+  width: number;
+  height: number;
+  alt: string;
+}
+
+export function pageMetadata(
+  title: string,
+  description: string,
+  path: string,
+  image: SocialImage = DEFAULT_OG_IMAGE,
+): Metadata {
   const url = absoluteUrl(path);
   return {
     title: { absolute: title },
@@ -40,18 +52,37 @@ export function pageMetadata(title: string, description: string, path: string): 
       title,
       description,
       url,
-      images: [DEFAULT_OG_IMAGE],
+      images: [image],
     },
-    twitter: { card: "summary_large_image", title, description, images: [DEFAULT_OG_IMAGE.url] },
+    twitter: { card: "summary_large_image", title, description, images: [image.url] },
   };
 }
 
+// Each tool and category has its own 1200 x 630 preview, drawn at build time (src/app/og/[file]).
+export function toolImagePath(tool: Pick<Tool, "slug">): string {
+  return `/og/${tool.slug}.png`;
+}
+
+export function categoryImagePath(category: Pick<Category, "slug">): string {
+  return `/og/category-${category.slug}.png`;
+}
+
 export function toolMetadata(tool: Tool): Metadata {
-  return pageMetadata(tool.metaTitle, tool.metaDescription, toolPath(tool));
+  return pageMetadata(tool.metaTitle, tool.metaDescription, toolPath(tool), {
+    url: absoluteUrl(toolImagePath(tool)),
+    width: 1200,
+    height: 630,
+    alt: `${tool.name} – free online tool on ${SITE_NAME}`,
+  });
 }
 
 export function categoryMetadata(category: Category): Metadata {
-  return pageMetadata(category.metaTitle, category.metaDescription, categoryPath(category));
+  return pageMetadata(category.metaTitle, category.metaDescription, categoryPath(category), {
+    url: absoluteUrl(categoryImagePath(category)),
+    width: 1200,
+    height: 630,
+    alt: `${category.name} – free online tools on ${SITE_NAME}`,
+  });
 }
 
 // Homepage: who runs the site (helps Google show the name and logo) and the site itself.

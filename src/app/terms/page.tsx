@@ -5,7 +5,7 @@ import { CONTACT_EMAIL, LEGAL } from "@/data/site";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata(
-  "Terms of Use – Boltly",
+  "Terms of Use – Rules for Using Boltly's Free Tools",
   "The rules for using Boltly's free online tools and calculators, including notices that results are estimates and not professional advice.",
   "/terms/",
 );

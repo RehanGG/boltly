@@ -5,7 +5,7 @@ import { CONTACT_EMAIL, LEGAL } from "@/data/site";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata(
-  "Privacy Policy – Boltly",
+  "Privacy Policy – How Boltly Handles Your Data",
   "How Boltly handles your data: tools run in your browser, files are not uploaded, and analytics cookies are used only if you agree.",
   "/privacy-policy/",
 );
