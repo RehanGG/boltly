@@ -47,8 +47,17 @@ export default function AgeCalculator() {
       }
       result={
         result === null ? (
+          // Shown until today's date is known in the browser. It has the same rows as the
+          // result, so the page below does not move when the result appears.
           <ResultBox>
-            <p className="text-muted">Calculating…</p>
+            <MainResult label="Your age" value="…" />
+            <p className="mt-1 text-muted">Calculating…</p>
+            <dl className="mt-3">
+              <ResultRow label="Total days" value="–" />
+              <ResultRow label="Next birthday" value="–" />
+              <ResultRow label="Days until birthday" value="–" />
+            </dl>
+            <div className="mt-4 h-11" aria-hidden="true" />
           </ResultBox>
         ) : result.ok ? (
           <ResultBox>
