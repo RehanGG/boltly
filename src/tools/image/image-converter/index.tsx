@@ -118,43 +118,46 @@ export default function ImageConverter() {
         </Button>
       </div>
 
-      {items.length > 0 && (
-        <ul aria-live="polite" className="divide-y divide-border rounded-card border border-border bg-bg">
-          {items.map((item) => (
-            <li key={item.id} className="flex flex-wrap items-center justify-between gap-3 p-3">
-              <div className="min-w-0 flex-1">
-                <p className="truncate font-medium text-text">{item.file.name}</p>
-                <p className="text-sm text-muted">
-                  {item.status === "waiting" && `${formatBytes(item.file.size)} · waiting`}
-                  {item.status === "working" && "Converting…"}
-                  {item.status === "error" && <span className="text-danger">{item.error}</span>}
-                  {item.status === "done" && item.blob && (
-                    <>
-                      {formatBytes(item.file.size)} → <strong className="text-text">{formatBytes(item.blob.size)}</strong> · {item.outputName}
-                    </>
+      {/* Always on the page, so screen readers announce results when they appear. */}
+      <div aria-live="polite" className="empty:-mt-4">
+        {items.length > 0 && (
+          <ul className="divide-y divide-border rounded-card border border-border bg-bg">
+            {items.map((item) => (
+              <li key={item.id} className="flex flex-wrap items-center justify-between gap-3 p-3">
+                <div className="min-w-0 flex-1">
+                  <p className="truncate font-medium text-text">{item.file.name}</p>
+                  <p className="text-sm text-muted">
+                    {item.status === "waiting" && `${formatBytes(item.file.size)} · waiting`}
+                    {item.status === "working" && "Converting…"}
+                    {item.status === "error" && <span className="text-danger">{item.error}</span>}
+                    {item.status === "done" && item.blob && (
+                      <>
+                        {formatBytes(item.file.size)} → <strong className="text-text">{formatBytes(item.blob.size)}</strong> · {item.outputName}
+                      </>
+                    )}
+                  </p>
+                </div>
+                <div className="flex gap-2">
+                  {item.status === "done" && item.blob && item.outputName && (
+                    <Button variant="secondary" onClick={() => downloadBlob(item.blob!, item.outputName!)}>
+                      <Download className="h-4 w-4" aria-hidden="true" />
+                      Download
+                    </Button>
                   )}
-                </p>
-              </div>
-              <div className="flex gap-2">
-                {item.status === "done" && item.blob && item.outputName && (
-                  <Button variant="secondary" onClick={() => downloadBlob(item.blob!, item.outputName!)}>
-                    <Download className="h-4 w-4" aria-hidden="true" />
-                    Download
+                  <Button
+                    variant="secondary"
+                    aria-label={`Remove ${item.file.name}`}
+                    disabled={busy}
+                    onClick={() => setItems((list) => list.filter((i) => i.id !== item.id))}
+                  >
+                    <Trash2 className="h-4 w-4" aria-hidden="true" />
                   </Button>
-                )}
-                <Button
-                  variant="secondary"
-                  aria-label={`Remove ${item.file.name}`}
-                  disabled={busy}
-                  onClick={() => setItems((list) => list.filter((i) => i.id !== item.id))}
-                >
-                  <Trash2 className="h-4 w-4" aria-hidden="true" />
-                </Button>
-              </div>
-            </li>
-          ))}
-        </ul>
-      )}
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
     </div>
   );
 }

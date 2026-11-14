@@ -37,6 +37,18 @@ describe("calculateDateDifference", () => {
     expect(r.totalMonths).toBe(320);
   });
 
+  it("counts whole months from a 29 February start", () => {
+    // 29 Feb 2024 plus 34 months is 29 Dec 2026, which leaves 2 days.
+    const r = ok("2024-02-29", "2026-12-31");
+    expect(r.days).toBe(1036);
+    expect([r.years, r.months, r.remainingDays]).toEqual([2, 10, 2]);
+    expect(r.totalMonths).toBe(34);
+    const exact = ok("2024-02-29", "2025-02-28");
+    expect([exact.years, exact.months, exact.remainingDays]).toEqual([1, 0, 0]);
+    const endOfMonth = ok("2026-01-31", "2026-03-01");
+    expect([endOfMonth.months, endOfMonth.remainingDays]).toEqual([1, 1]);
+  });
+
   it("swaps dates that are the wrong way round", () => {
     const r = ok("2026-12-25", "2026-01-01");
     expect(r.reversed).toBe(true);

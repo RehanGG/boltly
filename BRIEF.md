@@ -419,6 +419,45 @@ Organic search is the main traffic source, so every tool page must be indexable 
 
 Already included in the setup install command (listed for reference): `npm install diff pdf-lib jsbarcode`.
 
+## 9a. Additional tools
+
+Tools added after Phase 1 that are not in the 30-tool master list. Each one follows the same registry, page template, SEO, accessibility and performance rules as a Phase 1 tool. When you add one, list it here and in `REGIONAL_VARIANTS` in `src/data/tools.test.ts` (the test that guards the master list).
+
+| # | Category | Tool name | URL | Notes |
+| --- | --- | --- | --- | --- |
+| 1 | Finance | US Sales Tax Calculator | /finance/sales-tax-calculator-usa/ | Region-specific version of the Sales Tax / VAT Calculator. US dollars only. |
+
+**US Sales Tax Calculator** (`sales-tax-calculator-usa`)
+
+- **Inputs:** state (50 states and DC), price or total, optional local rate %, add or remove tax.
+- **Output:** sales tax, statewide rate, local rate, combined rate, price before tax and total with tax.
+- **Rates:** statewide rates live in `rates.ts`, each with a link to the state's official tax website and the date they were last checked (`RATES_CHECKED`). Re-check them against the official sources before changing that date.
+- **Local rates:** the visitor types the local rate; the tool does not look it up. The local field is locked for states with no local sales tax.
+- **Slug:** the US has sales tax, not VAT, so the slug is `sales-tax-calculator-usa` with no "vat". Keep it; the page is already submitted for indexing.
+
+Rules for any additional tool:
+
+- Never guess a rate or a local rule. Take it from an official source and record the source and the date checked.
+- A region-specific tool uses the name pattern `[tool]-[country]` and links to the generic tool, and the generic tool links back through its related tools.
+
+## 9b. Guides
+
+Short how-to articles under `/guides/` that answer a search question and send readers to a tool. Guide content lives in `src/data/guides.ts`; the pages are `src/app/guides/page.tsx` (index) and `src/app/guides/[slug]/page.tsx`.
+
+| # | Guide | URL | Tool it links to |
+| --- | --- | --- | --- |
+| 1 | How to Estimate Sales Tax in the US | /guides/how-to-estimate-sales-tax/ | US Sales Tax Calculator |
+
+Rules for every guide:
+
+- 600 to 900 words, original text, clear and practical, with a short worked example.
+- A link to its tool near the top and near the bottom.
+- Unique title (max 60 characters) and description (max 155), canonical URL, exactly one H1, and its own preview image.
+- JSON-LD: `Article`, `FAQPage` and `BreadcrumbList` (Home › Guides › guide). The author is Boltly; do not invent a named author.
+- Linked from its tool page ("Learn more"), its category page, the `/guides/` index and the footer, and listed in the sitemap with a last-modified date in `src/data/updated.ts`.
+- Any rate or rule in a guide must match the tool's verified data. Verify the facts before publishing.
+- Write a few useful guides, not many thin ones.
+
 ## 10. Build order, deployment and QA
 
 Suggested build order for one developer, about 5 to 6 weeks. Adjust the pace to the team's capacity.

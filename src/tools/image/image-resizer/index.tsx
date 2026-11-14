@@ -168,20 +168,23 @@ export default function ImageResizer() {
         </>
       )}
 
-      {output && file && (
-        <div aria-live="polite" className="flex flex-wrap items-center justify-between gap-3 rounded-card border border-border bg-bg p-4">
-          <div>
-            <p className="font-medium text-text">{output.name}</p>
-            <p className="text-sm text-muted">
-              {orig.width} × {orig.height} px · {formatBytes(file.size)} → <strong className="text-text">{output.width} × {output.height} px · {formatBytes(output.blob.size)}</strong>
-            </p>
+      {/* Always on the page, so screen readers announce results when they appear. */}
+      <div aria-live="polite" className="empty:-mt-4">
+        {output && file && (
+          <div className="flex flex-wrap items-center justify-between gap-3 rounded-card border border-border bg-bg p-4">
+            <div>
+              <p className="font-medium text-text">{output.name}</p>
+              <p className="text-sm text-muted">
+                {orig.width} × {orig.height} px · {formatBytes(file.size)} → <strong className="text-text">{output.width} × {output.height} px · {formatBytes(output.blob.size)}</strong>
+              </p>
+            </div>
+            <Button variant="secondary" onClick={() => downloadBlob(output.blob, output.name)}>
+              <Download className="h-4 w-4" aria-hidden="true" />
+              Download
+            </Button>
           </div>
-          <Button variant="secondary" onClick={() => downloadBlob(output.blob, output.name)}>
-            <Download className="h-4 w-4" aria-hidden="true" />
-            Download
-          </Button>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }

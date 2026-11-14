@@ -1,4 +1,4 @@
-import { addDays, differenceInCalendarDays, intervalToDuration } from "date-fns";
+import { addDays, addMonths, differenceInCalendarDays, differenceInMonths } from "date-fns";
 import { parseDateInput } from "@/lib/dates";
 import type { Calc } from "@/lib/validate";
 
@@ -31,7 +31,10 @@ export function calculateDateDifference(
   const [from, to] = reversed ? [end, start] : [start, end];
   const lastDay = includeEnd ? addDays(to, 1) : to;
   const days = differenceInCalendarDays(lastDay, from);
-  const { years = 0, months = 0, days: remainingDays = 0 } = intervalToDuration({ start: from, end: lastDay });
+  // Count whole months from the start date itself, then the days left over. Counting
+  // years first would move a 29 February start to the 28th and add a day.
+  const totalMonths = differenceInMonths(lastDay, from);
+  const remainingDays = differenceInCalendarDays(lastDay, addMonths(from, totalMonths));
 
   return {
     ok: true,
@@ -39,10 +42,10 @@ export function calculateDateDifference(
       days,
       weeks: Math.floor(days / 7),
       extraDays: days % 7,
-      years,
-      months,
+      years: Math.floor(totalMonths / 12),
+      months: totalMonths % 12,
       remainingDays,
-      totalMonths: years * 12 + months,
+      totalMonths,
       reversed,
     },
   };
