@@ -1,5 +1,6 @@
 import { ImageResponse } from "next/og";
 import { categories } from "@/data/categories";
+import { guides } from "@/data/guides";
 import { tools } from "@/data/tools";
 
 // One 1200 x 630 social preview per tool and per category, drawn once at build time and
@@ -11,6 +12,7 @@ export function generateStaticParams() {
   return [
     ...tools.map((t) => ({ file: `${t.slug}.png` })),
     ...categories.map((c) => ({ file: `category-${c.slug}.png` })),
+    ...guides.map((g) => ({ file: `guide-${g.slug}.png` })),
   ];
 }
 
@@ -53,6 +55,12 @@ export async function GET(_request: Request, { params }: { params: Promise<{ fil
   const { file } = await params;
   const slug = file.replace(/\.png$/, "");
   const size = { width: 1200, height: 630 };
+
+  if (slug.startsWith("guide-")) {
+    const guide = guides.find((g) => `guide-${g.slug}` === slug);
+    if (!guide) return new Response("Not found", { status: 404 });
+    return new ImageResponse(card("Guide", guide.title, guide.summary), size);
+  }
 
   if (slug.startsWith("category-")) {
     const category = categories.find((c) => `category-${c.slug}` === slug);

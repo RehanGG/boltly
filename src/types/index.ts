@@ -41,3 +41,27 @@ export interface ToolContent {
   method: string[]; // paragraphs, 100 to 200 words in total
   faqs: FaqItem[]; // 4 to 6 questions
 }
+
+// A how-to article that supports a tool (see GROWTH_PLAN.md, "Add supporting content").
+export interface GuideSection {
+  heading: string;
+  paragraphs: string[];
+  list?: string[]; // shown after the paragraphs
+}
+
+export interface Guide {
+  slug: string; // URL: /guides/<slug>/
+  title: string; // the H1
+  metaTitle: string; // max 60 chars
+  metaDescription: string; // max 155 chars
+  summary: string; // one line for cards and the guides index
+  toolSlug: string; // the tool this guide supports
+  published: string; // YYYY-MM-DD
+  updated: string; // YYYY-MM-DD
+  intro: string[];
+  sections: GuideSection[];
+  example: { heading: string; steps: string[]; result: string };
+  afterExample: GuideSection[];
+  closing: string;
+  faqs: FaqItem[];
+}

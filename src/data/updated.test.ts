@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { categories } from "./categories";
 import { LEGAL_PAGES } from "./site";
+import { guides } from "./guides";
 import { tools } from "./tools";
 import { lastModified, PAGE_UPDATED, SITE_UPDATED } from "./updated";
 
@@ -9,6 +10,8 @@ const allPaths = [
   "/",
   ...categories.map((c) => `/${c.slug}/`),
   ...tools.map((t) => `/${t.category}/${t.slug}/`),
+  "/guides/",
+  ...guides.map((g) => `/guides/${g.slug}/`),
   ...LEGAL_PAGES.map((p) => p.path),
 ];
 

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { getCategory } from "@/data/categories";
 import { toolPath, tools } from "@/data/tools";
-import type { Category, FaqItem, Tool } from "@/types";
+import type { Category, FaqItem, Guide, Tool } from "@/types";
 
 export const SITE_URL = (
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://boltly.io"
@@ -178,5 +178,53 @@ export function webApplicationJsonLd(tool: Tool) {
     operatingSystem: "Any",
     browserRequirements: "Requires JavaScript",
     offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+  };
+}
+
+// --- Guides ---------------------------------------------------------------------
+
+export function guidePath(guide: Pick<Guide, "slug">): string {
+  return `/guides/${guide.slug}/`;
+}
+
+export function guideImagePath(guide: Pick<Guide, "slug">): string {
+  return `/og/guide-${guide.slug}.png`;
+}
+
+// Article metadata: Open Graph type "article" with its published and modified dates.
+export function guideMetadata(guide: Guide): Metadata {
+  const base = pageMetadata(guide.metaTitle, guide.metaDescription, guidePath(guide), {
+    url: absoluteUrl(guideImagePath(guide)),
+    width: 1200,
+    height: 630,
+    alt: `${guide.title} – a guide from ${SITE_NAME}`,
+  });
+  return {
+    ...base,
+    openGraph: {
+      ...base.openGraph,
+      type: "article",
+      publishedTime: guide.published,
+      modifiedTime: guide.updated,
+      authors: [SITE_NAME],
+    },
+  };
+}
+
+export function articleJsonLd(guide: Guide) {
+  const url = absoluteUrl(guidePath(guide));
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: guide.title,
+    description: guide.metaDescription,
+    url,
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
+    image: absoluteUrl(guideImagePath(guide)),
+    datePublished: guide.published,
+    dateModified: guide.updated,
+    inLanguage: "en",
+    author: { "@type": "Organization", name: SITE_NAME, url: absoluteUrl("/") },
+    publisher: { "@id": `${SITE_URL}/#organization` },
   };
 }

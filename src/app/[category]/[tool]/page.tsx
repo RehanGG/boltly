@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import AdSlot from "@/components/ads/AdSlot";
 import SectionHeader from "@/components/home/SectionHeader";
@@ -10,10 +11,12 @@ import RecordVisit from "@/components/tool/RecordVisit";
 import JsonLd from "@/components/ui/JsonLd";
 import { getCategory } from "@/data/categories";
 import { toolContent } from "@/data/tool-content";
+import { guidesForTool } from "@/data/guides";
 import { getRelatedTools, getTool, toolPath } from "@/data/tools";
 import {
   breadcrumbJsonLd,
   categoryPath,
+  guidePath,
   faqJsonLd,
   toolMetadata,
   webApplicationJsonLd,
@@ -90,6 +93,22 @@ export default async function ToolPage({ params }: Props) {
             </p>
           ))}
         </section>
+
+        {guidesForTool(tool.slug).length > 0 && (
+          <section aria-labelledby="guide-heading">
+            <SectionHeader id="guide-heading" title="Learn more" />
+            <ul className="space-y-2">
+              {guidesForTool(tool.slug).map((g) => (
+                <li key={g.slug}>
+                  <Link href={guidePath(g)} className="font-medium text-primary underline">
+                    {g.title}
+                  </Link>
+                  <span className="block text-sm text-muted">{g.summary}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
 
         <section aria-labelledby="faq-heading">
           <SectionHeader id="faq-heading" title="Frequently asked questions" />

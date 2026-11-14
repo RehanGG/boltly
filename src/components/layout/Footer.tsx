@@ -35,6 +35,11 @@ export default function Footer() {
         <nav aria-label="Company and legal">
           <p className="text-sm font-semibold text-text">{SITE_NAME}</p>
           <ul>
+            <li>
+              <Link href="/guides/" className={link}>
+                Guides
+              </Link>
+            </li>
             {LEGAL_PAGES.map((page) => (
               <li key={page.path}>
                 <Link href={page.path} className={link}>

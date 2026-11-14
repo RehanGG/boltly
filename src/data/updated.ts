@@ -15,6 +15,8 @@ export const PAGE_UPDATED: Record<string, string> = {
   "/finance/": "2026-11-14", // lists the new tool
   "/": "2026-11-14", // tool count and directory include the new tool
   "/about/": "2026-11-14", // tool count
+  "/guides/": "2026-11-14", // new page
+  "/guides/how-to-estimate-sales-tax/": "2026-11-14", // new guide
 };
 
 export function lastModified(path: string): string {

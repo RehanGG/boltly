@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import AdSlot from "@/components/ads/AdSlot";
 import CategoryCard from "@/components/home/CategoryCard";
@@ -9,8 +10,9 @@ import ToolCard from "@/components/tool/ToolCard";
 import Icon from "@/components/ui/Icon";
 import JsonLd from "@/components/ui/JsonLd";
 import { categories, getCategory } from "@/data/categories";
+import { guides } from "@/data/guides";
 import { getToolsByCategory } from "@/data/tools";
-import { breadcrumbJsonLd, categoryMetadata, categoryPath, collectionPageJsonLd } from "@/lib/seo";
+import { breadcrumbJsonLd, categoryMetadata, categoryPath, collectionPageJsonLd, guidePath } from "@/lib/seo";
 
 type Props = { params: Promise<{ category: string }> };
 
@@ -38,6 +40,7 @@ export default async function CategoryPage({ params }: Props) {
 
   const list = getToolsByCategory(category.slug);
   const others = categories.filter((c) => c.slug !== category.slug);
+  const categoryGuides = guides.filter((g) => list.some((t) => t.slug === g.toolSlug));
   const crumbs = [
     { name: "Home", path: "/" },
     { name: category.name, path: categoryPath(category) },
@@ -88,6 +91,25 @@ export default async function CategoryPage({ params }: Props) {
             ))}
           </div>
         </section>
+
+        {categoryGuides.length > 0 && (
+          <section aria-labelledby="guides-heading">
+            <SectionHeader id="guides-heading" title="Guides" hint="Step-by-step help with worked examples." />
+            <ul className="grid gap-3 sm:grid-cols-2 sm:gap-4">
+              {categoryGuides.map((g) => (
+                <li key={g.slug}>
+                  <Link
+                    href={guidePath(g)}
+                    className="flex h-full min-h-11 flex-col gap-1 rounded-card border border-border bg-surface p-5 shadow-card transition duration-150 hover:border-primary hover:bg-bg"
+                  >
+                    <span className="font-semibold text-text">{g.title}</span>
+                    <span className="text-sm text-muted">{g.summary}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
 
         <section aria-labelledby="more-heading">
           <SectionHeader id="more-heading" title="More free tools" hint="Explore the other categories." />

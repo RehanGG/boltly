@@ -50,7 +50,8 @@ for (const file of files) {
   pageUrls.push(url);
   const html = readFileSync(file, "utf8");
   const segments = rel === "" ? 0 : rel.split("/").length;
-  const isTool = segments === 2;
+  const isGuide = rel.startsWith("guides/") && segments === 2;
+  const isTool = segments === 2 && !isGuide;
   if (isTool) toolPages++;
 
   if (!/<html[^>]*\blang="en"/.test(html)) fail(urlPath, 'missing <html lang="en">');
@@ -118,6 +119,21 @@ for (const file of files) {
       });
       if (d.itemListElement.at(-1)?.item !== url) fail(urlPath, "BreadcrumbList does not end at this page");
     }
+  }
+
+  if (isGuide) {
+    for (const t of ["Article", "FAQPage"]) if (!types.includes(t)) fail(urlPath, `missing ${t} JSON-LD`);
+    const article = ld.find((d) => d["@type"] === "Article");
+    if (article) {
+      for (const k of ["headline", "datePublished", "dateModified", "author", "publisher", "image"]) {
+        if (!article[k]) fail(urlPath, `Article is missing ${k}`);
+      }
+      if (article.headline.length > 110) fail(urlPath, "Article headline is longer than 110 characters");
+    }
+    if (metaContent(html, "property", "og:type") !== "article") fail(urlPath, "og:type should be article");
+    const body = html.match(/<article[\s\S]*<\/article>/)?.[0] ?? "";
+    const n = (decode(body.replace(/<script[\s\S]*?<\/script>/g, " ").replace(/<[^>]+>/g, " ")).match(/\S+/g) ?? []).length;
+    if (n < 600) fail(urlPath, `guide has only ${n} words`);
   }
 
   if (isTool) {
