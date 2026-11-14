@@ -69,7 +69,7 @@ export const guides: Guide[] = [
         heading: "Why your estimate might be off",
         paragraphs: ["An estimate built on the general rate is close for most everyday purchases, but a few things can move the real figure."],
         list: [
-          "Some goods have their own rates. Tennessee taxes food and food ingredients at a 4% state rate, and Virginia taxes groceries at 1%.",
+          "Some goods have their own rates. Food is a common case: Tennessee's state rate on food and food ingredients is 4%, and Virginia's rate on groceries is 1%.",
           "A few states use a different kind of tax. Hawaii has a 4% general excise tax on businesses, which sellers may pass on to customers, and New Mexico has a gross receipts tax.",
           "Rates change. States and local governments update them, so check the official figure before you rely on an estimate for anything important.",
           "Tax is charged in whole cents, so a receipt can differ from a rough estimate by a cent or two.",
