@@ -51,7 +51,7 @@ Month 1 is about making sure Google can find, crawl and understand every page, a
 - [x] Read every tool page aloud. Rewrite any text that sounds generic, repeats another page or is not clearly useful.
 - [x] Add a worked example to each calculator page (for example, "A $200,000 loan at 6% over 30 years") with the real result.
 - [ ] Add 1 or 2 more FAQs to the ten most important tools, based on questions people really ask.
-- [ ] Check that the numbers in every calculator example are correct against an independent source.
+- [x] Check that the numbers in every calculator example are correct against an independent source.
 
 **Week 4: first data review**
 
