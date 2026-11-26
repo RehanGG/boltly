@@ -42,6 +42,14 @@ export interface ToolContent {
   faqs: FaqItem[]; // 4 to 6 questions
 }
 
+// A worked example shown on calculator pages. Every number in it must match what the
+// tool gives for the same inputs (checked in src/data/tool-examples.test.ts).
+export interface WorkedExample {
+  title: string; // the scenario, e.g. "A $200,000 loan at 6% over 30 years"
+  steps: string[]; // the working, one line each
+  result: string; // the answer in a sentence
+}
+
 // A how-to article that supports a tool (see GROWTH_PLAN.md, "Add supporting content").
 export interface GuideSection {
   heading: string;

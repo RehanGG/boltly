@@ -2,22 +2,12 @@
 // Google only trusts these dates if they are accurate, so change them when you change
 // a page's text, tool or layout, and never just to look fresh.
 //
-// Dates come from the git history: the 7 Nov 2026 redesign changed every page.
-export const SITE_UPDATED = "2026-11-07";
+// Dates come from the git history. On 26 Nov 2026 every page changed: the phone header
+// bar was rebuilt, and every tool page got new text (and calculators a worked example).
+export const SITE_UPDATED = "2026-11-26";
 
 // Pages that changed after SITE_UPDATED, by path.
-export const PAGE_UPDATED: Record<string, string> = {
-  "/generators/password-generator/": "2026-11-13", // third related tool added
-  "/privacy-policy/": "2026-11-14", // clearer page title
-  "/terms/": "2026-11-14", // clearer page title
-  "/finance/sales-tax-calculator-usa/": "2026-11-14", // new page
-  "/finance/sales-tax-vat-calculator/": "2026-11-14", // links to the US version
-  "/finance/": "2026-11-14", // lists the new tool
-  "/": "2026-11-14", // tool count and directory include the new tool
-  "/about/": "2026-11-14", // tool count
-  "/guides/": "2026-11-14", // new page
-  "/guides/how-to-estimate-sales-tax/": "2026-11-14", // new guide
-};
+export const PAGE_UPDATED: Record<string, string> = {};
 
 export function lastModified(path: string): string {
   return PAGE_UPDATED[path] ?? SITE_UPDATED;

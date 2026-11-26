@@ -11,6 +11,7 @@ import RecordVisit from "@/components/tool/RecordVisit";
 import JsonLd from "@/components/ui/JsonLd";
 import { getCategory } from "@/data/categories";
 import { toolContent } from "@/data/tool-content";
+import { toolExamples } from "@/data/tool-examples";
 import { guidesForTool } from "@/data/guides";
 import { getRelatedTools, getTool, toolPath } from "@/data/tools";
 import {
@@ -50,6 +51,7 @@ export default async function ToolPage({ params }: Props) {
     { name: category.name, path: categoryPath(category) },
     { name: tool.name, path: toolPath(tool) },
   ];
+  const example = toolExamples[tool.slug];
   const localOnly = ["image", "text", "generators"].includes(tool.category);
   const localNote =
     tool.category === "image"
@@ -83,6 +85,21 @@ export default async function ToolPage({ params }: Props) {
             ))}
           </ol>
         </section>
+
+        {example && (
+          <section aria-labelledby="example-heading">
+            <SectionHeader id="example-heading" title="Worked example" />
+            <div className="rounded-card border border-border bg-surface p-4">
+              <p className="font-semibold text-text">{example.title}</p>
+              <ol className="mt-2 list-decimal space-y-1 pl-6">
+                {example.steps.map((s) => (
+                  <li key={s}>{s}</li>
+                ))}
+              </ol>
+              <p className="mt-3 border-t border-border pt-3 font-medium text-text">{example.result}</p>
+            </div>
+          </section>
+        )}
 
         <section aria-labelledby="about-heading">
           <SectionHeader id="about-heading" title={`About the ${tool.name}`} />

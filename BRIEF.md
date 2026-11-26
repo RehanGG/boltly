@@ -227,6 +227,7 @@ const toolComponents = {
 3. The tool itself (input and result), inside `ToolShell`.
 4. A reserved ad slot directly below the tool (never between input and result).
 5. How to use: 3 to 5 short numbered steps.
+5a. Worked example (calculators in Finance and Everyday Calculators): one realistic scenario, 2 to 5 lines of working and the result, from `src/data/tool-examples.ts`. Every figure must match the tool's own result; `tool-examples.test.ts` recalculates them.
 6. Short explanation of the formula or method, 100 to 200 words, unique per tool.
 7. FAQ: 4 to 6 questions, rendered with FAQ schema.
 8. Related tools strip: 3 to 4 cards.
