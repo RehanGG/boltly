@@ -308,12 +308,12 @@ Do monthly maintenance: update dependencies to the latest compatible versions (l
 
 You plan to apply later. Applying when the site is ready gives a better chance of approval than applying early and being rejected. Check these before you apply. Google can change its requirements, so check AdSense's current program policies at that time.
 
-- [ ] The site has been live on your own domain for several weeks and most pages are indexed.
-- [ ] At least 30 tools are live, each with original, useful text (no copied or thin pages).
+- [x] The site has been live on your own domain for several weeks and most pages are indexed.
+- [x] At least 30 tools are live, each with original, useful text (no copied or thin pages).
 - [ ] A few helpful guides exist, written for people, not only keywords.
 - [ ] About, Contact, Privacy Policy and Terms pages are live and linked in the footer, and the Privacy Policy mentions advertising and cookies.
-- [ ] The contact page has a working email address.
-- [ ] Navigation is clear and the site works well on mobile.
+- [x] The contact page has a working email address.
+- [x] Navigation is clear and the site works well on mobile.
 - [ ] Search Console shows some real organic visitors, not only your own visits.
 - [ ] A consent banner works for visitors in the UK and EU.
 - [ ] No broken pages, no copied content and no prohibited content.

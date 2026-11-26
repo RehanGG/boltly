@@ -38,10 +38,12 @@ export default function Header() {
         aria-label="Categories"
         className="border-t border-border md:hidden"
       >
-        <ul className="mx-auto flex max-w-page gap-1 overflow-x-auto px-4">
+        {/* Tighter spacing so all five categories fit from 360 px wide; narrower
+            screens can still scroll the row. */}
+        <ul className="mx-auto flex max-w-page justify-between overflow-x-auto px-2">
           {categories.map((c) => (
             <li key={c.slug} className="shrink-0">
-              <Link href={`/${c.slug}/`} className={navLink}>
+              <Link href={`/${c.slug}/`} className={`${navLink} min-w-11 justify-center !px-1.5`}>
                 {c.shortName}
               </Link>
             </li>
