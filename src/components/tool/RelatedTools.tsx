@@ -9,7 +9,7 @@ export default function RelatedTools({ tools }: { tools: Tool[] }) {
   if (tools.length === 0) return null;
   return (
     <section aria-labelledby="related-heading">
-      <SectionHeader id="related-heading" title="Related tools" hint="Other tools people use with this one." />
+      <SectionHeader id="related-heading" title="Related tools" hint="Tools for the next step or a similar job." />
       <div className={`grid gap-3 sm:gap-4 ${COLUMNS[tools.length] ?? "sm:grid-cols-2 lg:grid-cols-4"}`}>
         {tools.map((t) => (
           <ToolCard key={t.slug} tool={t} variant="tile" />

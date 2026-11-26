@@ -38,9 +38,9 @@ export const toolContent: Record<string, ToolContent> = {
           "No. This calculator assumes a reducing balance, where interest falls as you repay. Flat-rate loans charge interest on the original amount for the whole term, which costs more for the same quoted rate.",
       },
       {
-        question: "Is my data stored anywhere?",
+        question: "How much difference does a lower rate make?",
         answer:
-          "No. All calculations run in your browser and nothing you enter is sent to a server.",
+          "More than it looks. Borrowing 250,000 over 20 years costs 2,013.98 a month at 7.5% and 1,938.25 at 7%. Half a point saves about 76 a month and 18,177 in interest over the term, so compare offers by rate, not only by monthly payment.",
       },
     ],
   },
@@ -292,7 +292,7 @@ export const toolContent: Record<string, ToolContent> = {
   },
   "tip-calculator": {
     intro:
-      "Splitting a restaurant bill should not need mental maths. This tip calculator adds your chosen tip to the bill, then divides everything between the number of people, so you can see the tip, the total and what each person pays in seconds. Use the quick buttons for common tip percentages or type your own.",
+      "Splitting a restaurant bill should not need mental maths. This tip calculator adds your chosen tip to the bill, then divides everything between the number of people, so you can see the tip, the total and what each person pays. Use the quick buttons for common tip percentages or type your own.",
     steps: [
       "Enter the bill amount before tip.",
       "Pick a tip percentage with the quick buttons or type your own.",
@@ -301,7 +301,7 @@ export const toolContent: Record<string, ToolContent> = {
     ],
     method: [
       "The tip is the bill multiplied by the tip percentage divided by 100. The total is the bill plus the tip, and each person's share is the total divided by the number of people. The tip per person is the tip divided by the same number.",
-      "For example, an 85.50 bill with an 18% tip gives a tip of 15.39 and a total of 100.89. Shared between three people, each pays 33.63. The calculator splits the bill evenly and does not round up. If you prefer round figures, adjust the tip percentage until the per-person amount suits you. The tip is calculated on the pre-tax bill you enter, so enter the amount you want the tip based on.",
+      "For example, an 85.50 bill with an 18% tip gives a tip of 15.39 and a total of 100.89. Shared between three people, each pays 33.63. The calculator splits the bill evenly and does not round up. If you prefer round figures, adjust the tip percentage until the per-person amount suits you. The tip is worked out on exactly the amount you type, so enter the bill before tax if you prefer to tip on that.",
     ],
     faqs: [
       {
@@ -325,15 +325,15 @@ export const toolContent: Record<string, ToolContent> = {
           "Set the tip to 0% to see the bill split without any extra tip.",
       },
       {
-        question: "Why do I see fractions of a cent?",
+        question: "Why do the shares not add up exactly to the total?",
         answer:
-          "Amounts are rounded to two decimals for display. Small rounding differences of a cent may appear when you add up the shares.",
+          "Each share is rounded to the nearest cent, so three shares can add up to a cent more or less than the total. Have one person cover the odd cent.",
       },
     ],
   },
   "profit-margin-calculator": {
     intro:
-      "Margin and markup are often confused, yet they give very different numbers for the same sale. This profit margin calculator takes your cost and either your selling price or your markup percentage, then shows the profit, the margin percentage and the markup percentage side by side, so you can price products with confidence.",
+      "Margin and markup are often confused, yet they give very different numbers for the same sale. This profit margin calculator takes your cost and either your selling price or your markup percentage, then shows the profit, the margin percentage and the markup percentage side by side, so you can see which number a supplier or buyer is quoting.",
     steps: [
       "Enter what the item costs you.",
       "Choose whether you know the revenue (selling price) or the markup percentage.",
@@ -399,7 +399,7 @@ export const toolContent: Record<string, ToolContent> = {
       {
         question: "Why is monthly pay not weekly pay times four?",
         answer:
-          "A year has about 4.33 weeks per month. Monthly pay here is the yearly figure divided by twelve, which is more accurate.",
+          "A month is about 4.33 weeks on average, not 4, so weekly pay times four leaves out roughly four weeks a year. Monthly pay here is the yearly figure divided by twelve.",
       },
       {
         question: "How do I account for unpaid holiday?",
@@ -484,9 +484,9 @@ export const toolContent: Record<string, ToolContent> = {
           "In years without a 29 February, the birthday is counted on 28 February. Your age increases by one year on that date.",
       },
       {
-        question: "Why is the result empty for a moment when the page loads?",
+        question: "Why does the result say Calculating… for a moment?",
         answer:
-          "The tool waits to read today's date from your device so that it is correct in your time zone. It appears as soon as the page is ready.",
+          "The tool reads today's date from your device, so the age is right for your time zone even just after midnight. The result replaces the placeholder as soon as the page has loaded.",
       },
       {
         question: "Is my date of birth stored?",
@@ -579,7 +579,7 @@ export const toolContent: Record<string, ToolContent> = {
   },
   "unit-converter": {
     intro:
-      "Convert between everyday units in seconds. This unit converter covers length, weight, temperature, volume, speed and area, with both metric and imperial units. It works in both directions: type in either box and the other updates immediately, so you can check a recipe, a road sign, a floor plan or a shipping weight without a separate lookup.",
+      "Recipes, road signs, floor plans and parcel labels mix metric and imperial units. This unit converter covers length, weight, temperature, volume, speed and area, with both metric and imperial units. It works in both directions: type in either box and the other updates immediately, so you never need to work out which way round a conversion goes.",
     steps: [
       "Choose what you want to convert, such as length or temperature.",
       "Pick the units in the 'From' and 'To' menus.",
@@ -661,7 +661,7 @@ export const toolContent: Record<string, ToolContent> = {
   },
   "word-counter": {
     intro:
-      "Writers, students and marketers often need to know exactly how long a text is. This word counter shows the number of words, characters, sentences and paragraphs in your text as you type or paste, along with an estimated reading time. It works well for essays with a word limit, articles, emails, product descriptions and social media posts.",
+      "Essay limits, article briefs and job applications usually set a length in words. This word counter shows the number of words, characters, sentences and paragraphs in your text as you type or paste, along with an estimated reading time. It works well for essays with a word limit, articles, emails, product descriptions and social media posts.",
     steps: [
       "Type or paste your text into the box.",
       "Watch the counts update as you edit.",
@@ -694,9 +694,9 @@ export const toolContent: Record<string, ToolContent> = {
           "There is no fixed limit. Very large documents can feel slow on older phones, because everything is counted in your browser.",
       },
       {
-        question: "Is my text sent to a server?",
+        question: "Does it work for Chinese, Japanese or Thai?",
         answer:
-          "No. The counting happens on your device and your text is never uploaded.",
+          "Only partly. Words are counted wherever there is a space, and these languages do not put spaces between words, so a whole phrase counts as one word. The character count is still accurate.",
       },
     ],
   },
@@ -735,9 +735,9 @@ export const toolContent: Record<string, ToolContent> = {
           "As one character here. Some platforms count them as two, so keep some spare room if your text has many emoji.",
       },
       {
-        question: "Is my text saved?",
+        question: "Does the counter keep my text if I leave the page?",
         answer:
-          "No. Everything stays in your browser and nothing is uploaded.",
+          "No. The text is not saved anywhere, so copy it before you close or reload the page.",
       },
     ],
   },
@@ -809,7 +809,7 @@ export const toolContent: Record<string, ToolContent> = {
       {
         question: "Can it handle large lists?",
         answer:
-          "Yes. Lists with tens of thousands of lines are processed instantly in your browser. Extremely large files may slow down older devices.",
+          "Yes. Long lists are handled in your browser, though very large ones can take a moment on older phones.",
       },
       {
         question: "Are empty lines counted as duplicates?",
@@ -817,15 +817,15 @@ export const toolContent: Record<string, ToolContent> = {
           "Without the empty-line option, only the first blank line is kept and the rest count as duplicates. With the option on, all blank lines are removed and counted separately.",
       },
       {
-        question: "Is my list uploaded?",
+        question: "My list is separated by commas. Will it work?",
         answer:
-          "No. The list is processed in your browser and never leaves your device.",
+          "Not directly. The tool compares whole lines, so put each item on its own line first, for example by replacing each comma with a line break in a text editor.",
       },
     ],
   },
   "text-diff-checker": {
     intro:
-      "Need to see exactly what changed between two versions of a document, an email, a contract clause or a piece of code? Paste the original text on the left and the changed text on the right. The diff checker highlights what was added and what was removed, and counts the changes, so nothing slips through when you proofread or review an edit.",
+      "Spotting a changed word in two long versions of a document, an email, a contract clause or a piece of code is slow and easy to get wrong. Paste the original text on the left and the changed text on the right. The diff checker highlights what was added and what was removed, and counts the changes, so nothing slips through when you proofread or review an edit.",
     steps: [
       "Paste the original text into the first box.",
       "Paste the changed text into the second box.",
@@ -858,9 +858,9 @@ export const toolContent: Record<string, ToolContent> = {
           "Differences in spacing are rarely meaningful in prose, so word mode concentrates on the words. Use line mode if exact spacing matters.",
       },
       {
-        question: "Are my documents uploaded?",
+        question: "Can I compare Word or PDF files?",
         answer:
-          "No. Both texts stay in your browser, which makes the tool safe for private drafts.",
+          "Not as files. Copy the text out of each document and paste it into the two boxes. Formatting such as bold or tracked changes is not compared, only the words.",
       },
     ],
   },
@@ -881,7 +881,7 @@ export const toolContent: Record<string, ToolContent> = {
       {
         question: "What does lorem ipsum mean?",
         answer:
-          "It is a scrambled passage of Latin that has been used as dummy text since the 1500s. The words do not form a meaningful message.",
+          "Nothing as a whole. It is based on a passage from Cicero's De finibus bonorum et malorum, with words cut and rearranged, so it looks like Latin but does not form a message.",
       },
       {
         question: "Why use placeholder text?",
@@ -899,9 +899,9 @@ export const toolContent: Record<string, ToolContent> = {
           "The text is generated from a fixed starting point, so the same settings give the same result. Use 'Generate again' for a fresh version.",
       },
       {
-        question: "Is the generated text copyrighted?",
+        question: "Can I use the text in my project?",
         answer:
-          "No. The text is made up of common Latin words arranged randomly, and you can use it freely in any project.",
+          "Yes. It is made up of common Latin words put together at random by this page, and Boltly places no restrictions on using it. Replace it with real copy before you publish.",
       },
     ],
   },
@@ -916,13 +916,13 @@ export const toolContent: Record<string, ToolContent> = {
     ],
     method: [
       "Each image is decoded by your browser, drawn onto a canvas and saved again as a JPG or WebP file at the quality you choose. Lower quality discards fine detail that the eye barely notices, which can cut a photo to a fraction of its size. Setting a maximum width or height reduces the number of pixels, which saves even more.",
-      "PNG is a lossless format, so its quality setting has little effect and the savings are smaller. For big savings on PNG images, choose WebP as the output format. If the new file would not be smaller, the tool keeps your original and says so. Processing runs on your device one file at a time, and no web worker or outside server is involved, so nothing is sent over the internet. Very large photos can take a few seconds, and the page stays responsive meanwhile.",
+      "PNG is a lossless format, so its quality setting has little effect and the savings are smaller. For big savings on PNG images, choose WebP as the output format. If the new file would not be smaller, the tool keeps your original and says so. Files are processed one at a time, so with a batch of large photos the first downloads are ready before the last one is finished. Very large photos can take a few seconds each.",
     ],
     faqs: [
       {
-        question: "Are my images uploaded anywhere?",
+        question: "Does compression remove the photo's location and camera details?",
         answer:
-          "No. Compression happens inside your browser, and your files never leave your device. Only the compression code itself is downloaded, the first time you press Compress.",
+          "Yes, in most cases. The compressed file is saved fresh, without the hidden camera data such as GPS location. The exception is when the tool keeps your original because compressing would not make it smaller.",
       },
       {
         question: "What quality setting should I use?",
@@ -948,7 +948,7 @@ export const toolContent: Record<string, ToolContent> = {
   },
   "image-resizer": {
     intro:
-      "Need a photo at an exact size for a form, a profile picture, an email or a website? This image resizer changes the width and height of a JPG, PNG or WebP image, or scales it by a percentage. It runs entirely in your browser, so the picture stays private, and it shows the new size before you download.",
+      "Forms, profile pictures and websites often ask for a photo at a set size. This image resizer changes the width and height of a JPG, PNG or WebP image, or scales it by a percentage. It runs entirely in your browser, so the picture stays private, and it shows the new size before you download.",
     steps: [
       "Choose an image or drop it onto the box.",
       "Pick whether to resize by pixels or by percent, and enter the new size.",
@@ -981,9 +981,9 @@ export const toolContent: Record<string, ToolContent> = {
           "You can open JPG, PNG, WebP, GIF and BMP files. The result can be saved as JPG, PNG or WebP.",
       },
       {
-        question: "Is my image sent to a server?",
+        question: "Can I make a square image from a rectangular photo?",
         answer:
-          "No. Resizing happens on your device and nothing is uploaded.",
+          "Only by stretching it. Untick 'Lock aspect ratio' and enter equal sides, but the picture will be squeezed. This tool does not crop, so crop the photo first if you need a square without distortion.",
       },
     ],
   },
@@ -1022,9 +1022,9 @@ export const toolContent: Record<string, ToolContent> = {
           "Yes. Add up to 20 images, convert them together and download each result.",
       },
       {
-        question: "Are my files uploaded?",
+        question: "Can I convert HEIC photos from an iPhone?",
         answer:
-          "No. The conversion runs in your browser and your files stay on your device.",
+          "Not at the moment. The tool opens JPG, PNG, WebP, GIF and BMP files. If your phone saves photos as HEIC, export or share them as JPG first.",
       },
     ],
   },
@@ -1039,7 +1039,7 @@ export const toolContent: Record<string, ToolContent> = {
     ],
     method: [
       "Every image becomes one page. Your browser first decodes each picture, which also applies the rotation stored by phone cameras, and then saves it as a JPG, or as a PNG if the source was a PNG. In the smaller-file option, the longest side is limited to 2,000 pixels, which is plenty for printing on A4 or Letter paper.",
-      "The images are placed on the pages using the pdf-lib library, which is only downloaded when you press Create PDF. For fixed page sizes such as A4 or US Letter, each image is scaled to fit inside the margins without stretching and is centred. The automatic orientation turns the page sideways for wide pictures. With 'Same size as the image', each page matches its picture. Pages are measured in points, where 72 points make one inch.",
+      "The PDF is put together in your browser. For fixed page sizes such as A4 or US Letter, each image is scaled to fit inside the margins without stretching and is centred. The automatic orientation turns the page sideways for wide pictures. With 'Same size as the image', each page matches its picture. A small margin is a quarter of an inch (about 6 mm) and a medium margin is half an inch (about 13 mm).",
     ],
     faqs: [
       {
@@ -1063,15 +1063,15 @@ export const toolContent: Record<string, ToolContent> = {
           "Yes. You can mix formats freely, and GIF and BMP files also work.",
       },
       {
-        question: "Is my document uploaded?",
+        question: "Can I add pages to an existing PDF?",
         answer:
-          "No. The PDF is created on your device and your images are never sent to a server.",
+          "No. The tool makes a new PDF from your images. To add pages to an existing PDF, you need a PDF editor.",
       },
     ],
   },
   "qr-code-generator": {
     intro:
-      "Create a QR code for a web address, a message or your Wi-Fi network in a few seconds. Type your link or text, choose a size and colours, and download the code as a PNG for screens and print, or as an SVG that stays sharp at any size. The code is generated in your browser, so your links and passwords stay private.",
+      "Create a QR code for a web address, a message or your Wi-Fi network. Type your link or text, choose a size and colours, and download the code as a PNG for screens and print, or as an SVG that stays sharp at any size. The code is generated in your browser, so your links and passwords stay private.",
     steps: [
       "Choose Link or text, or Wi-Fi network.",
       "Enter the link, text or network details.",
@@ -1079,7 +1079,7 @@ export const toolContent: Record<string, ToolContent> = {
       "Check the preview, then download the PNG or SVG.",
     ],
     method: [
-      "A QR code stores your text as a grid of dark and light squares called modules. The qrcode library picks the smallest grid that fits your data and adds error correction, which lets the code still scan if part of it is dirty or covered. Higher levels, from Low (7 percent) to High (30 percent), recover more damage but make the code denser.",
+      "A QR code stores your text as a grid of dark and light squares called modules. The tool picks the smallest grid that fits your data and adds error correction, which lets the code still scan if part of it is dirty or covered. Higher levels, from Low (7 percent) to High (30 percent), recover more damage but make the code denser.",
       "In Wi-Fi mode, the details are turned into the standard text WIFI:T:WPA;S:name;P:password;; that phones recognise and use to join the network. Characters such as semicolons and colons are escaped with a backslash. For reliable scanning, use a dark code on a light background, keep the quiet margin around the code, and print it at least 2 cm wide. The tool warns you when your colours have too little contrast.",
     ],
     faqs: [
@@ -1104,15 +1104,15 @@ export const toolContent: Record<string, ToolContent> = {
           "Common causes are low contrast, a light code on a dark background, too small a print size, or no margin around the code.",
       },
       {
-        question: "Is my information stored or sent anywhere?",
+        question: "Can I change the link after printing the code?",
         answer:
-          "No. The code is created in your browser and what you type is never uploaded.",
+          "No. The link is stored in the pattern itself, so a different link needs a new code. Services that let you edit a printed code send it through their own redirect link, which this tool does not do.",
       },
     ],
   },
   "password-generator": {
     intro:
-      "Strong, unique passwords are the best protection for your accounts, but they are hard to invent yourself. This password generator creates random passwords of the length and character types you choose. It uses your browser's secure random number generator, runs on your device, and never sends or stores what it makes.",
+      "A good password is long, random and used for one account only, which is hard to manage if you make them up yourself. This password generator creates random passwords of the length and character types you choose. It uses your browser's secure random number generator, runs on your device, and never sends or stores what it makes.",
     steps: [
       "Set the length with the slider. Sixteen characters or more is a good choice.",
       "Choose which types of characters to include.",
@@ -1121,7 +1121,7 @@ export const toolContent: Record<string, ToolContent> = {
     ],
     method: [
       "Every character is chosen with crypto.getRandomValues, the browser's cryptographically secure source of randomness, not the Math.random function that is unsuitable for security. When a number is needed from a smaller range, values that would make some characters slightly more likely are discarded and redrawn, so each character has exactly the same chance.",
-      "The generator picks one character from each type you selected, fills the rest from all types together, and then shuffles the result with a secure shuffle, so the password always contains every type but in an unpredictable position. The strength meter estimates entropy as length × log2(size of the character pool). Under 40 bits is weak, 60 bits is fair, 80 bits is strong and above that is very strong. Avoiding look-alike characters removes I, l, 1, O, 0 and o.",
+      "The generator picks one character from each type you selected, fills the rest from all types together, and then shuffles the result with a secure shuffle, so the password always contains every type but in an unpredictable position. The strength meter estimates entropy as length × log2(size of the character pool). Under 40 bits is weak, 40 to 59 bits is fair, 60 to 79 bits is strong and 80 or more is very strong. Avoiding look-alike characters removes I, l, 1, O, 0 and o.",
     ],
     faqs: [
       {
@@ -1153,7 +1153,7 @@ export const toolContent: Record<string, ToolContent> = {
   },
   "random-number-generator": {
     intro:
-      "Need a fair way to pick a number? Use this random number generator for raffles, games, classroom draws, testing and decisions. Set the lowest and highest number, choose how many you want, and decide whether numbers can repeat. The numbers come from your browser's secure random generator, so every value in the range is equally likely.",
+      "Raffles, games, classroom draws and test data all need numbers that nobody can predict or influence. Set the lowest and highest number, choose how many you want, and decide whether numbers can repeat. The numbers come from your browser's secure random generator, so every value in the range is equally likely.",
     steps: [
       "Enter the minimum and maximum numbers. Both are included.",
       "Enter how many numbers you want.",
@@ -1168,7 +1168,7 @@ export const toolContent: Record<string, ToolContent> = {
       {
         question: "Are the numbers truly random?",
         answer:
-          "They come from the secure generator built into your browser, which is designed for cryptography. That is far better than the basic random function many websites use.",
+          "They come from the secure generator built into your browser, the same kind used to create encryption keys. Nobody, including Boltly, can predict or influence the result.",
       },
       {
         question: "Are the minimum and maximum included?",
@@ -1203,7 +1203,7 @@ export const toolContent: Record<string, ToolContent> = {
     ],
     method: [
       "Code 128 is a flexible format that can encode any printable English character. It switches between internal character sets automatically to keep the barcode short. EAN-13 encodes exactly 13 digits, the last of which is a check digit that lets scanners spot misreads.",
-      "The check digit is worked out from the first 12 digits. Digits in odd positions are multiplied by 1 and digits in even positions by 3, and the check digit is the amount needed to bring the total up to the next multiple of 10. If you enter 12 digits, the tool adds the check digit for you. If you enter 13, it checks that the last digit is correct. The barcode is drawn with the jsbarcode library, which is only loaded on this page. Real retail EAN codes are issued by GS1, so use a code you own before selling a product.",
+      "The check digit is worked out from the first 12 digits. Digits in odd positions are multiplied by 1 and digits in even positions by 3, and the check digit is the amount needed to bring the total up to the next multiple of 10. If you enter 12 digits, the tool adds the check digit for you. If you enter 13, it checks that the last digit is correct. Bar width sets the thickness of the narrowest bar, from 1 to 4 pixels, and height can be 30 to 300 pixels. Real retail EAN codes are issued by GS1, so use a code you own before selling a product.",
     ],
     faqs: [
       {
@@ -1227,9 +1227,9 @@ export const toolContent: Record<string, ToolContent> = {
           "Try thicker bars, more height and a clear white margin around the code, and print it at a good quality. Avoid curved or shiny surfaces.",
       },
       {
-        question: "Is my data uploaded?",
+        question: "How long can a Code 128 barcode be?",
         answer:
-          "No. The barcode is drawn in your browser and what you type is never sent anywhere.",
+          "Up to 80 characters here. Every character adds width, so long values make wide barcodes that are harder to print and scan. Keep labels short where you can.",
       },
     ],
   },
